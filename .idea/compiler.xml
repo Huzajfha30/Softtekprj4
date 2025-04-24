@@ -20,4 +20,11 @@
       <module name="AssemblyMQTT" target="9" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AGV" options="-parameters" />
+      <module name="AssemblyStation" options="-parameters" />
+      <module name="Warehouse" options="-parameters" />
+    </option>
+  </component>
 </project>
