@@ -121,5 +121,6 @@
     <module>AGV</module>
     <module>AssemblyStation</module>
     <module>Warehouse</module>
+      <module>Common</module>
   </modules>
 </project>
