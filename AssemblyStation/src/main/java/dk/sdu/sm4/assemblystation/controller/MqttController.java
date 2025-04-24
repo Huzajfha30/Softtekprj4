@@ -1,6 +1,7 @@
 package dk.sdu.sm4.assemblystation.controller;
 
 
+import dk.sdu.sm4.assemblystation.service.MqttHandler;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,4 +57,23 @@ public class MqttController {
             return "Fejl ved lukning: " + e.getMessage();
         }
     }
+    @GetMapping("/test-mqtt")
+    public String testMqtt() {
+        try {
+            mqttHandler.connect("localhost", 1883);
+
+            System.out.println("Starter process w/ ID 12345...");
+            mqttHandler.publish("emulator/operation", "{ \"ProcessID\": 12345 }");
+            Thread.sleep(2000);
+
+            System.out.println("Starter fejl process w/ ID 9999...");
+            mqttHandler.publish("emulator/operation", "{ \"ProcessID\": 9999 }");
+            Thread.sleep(2000);
+
+            return "MQTT-test udført.";
+        } catch (Exception e) {
+            return "Fejl i MQTT-test: " + e.getMessage();
+        }
+    }
+
 }

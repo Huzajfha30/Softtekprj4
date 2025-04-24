@@ -1,3 +1,5 @@
-dk\sdu\sm4\assemblystation\MQTTHandler.class
-dk\sdu\sm4\assemblystation\MQTTBackgroundService.class
-dk\sdu\sm4\assemblystation\AssemblyApplication.class
+dk\sdu\sm4\assemblystation\service\CallbackHandler.class
+dk\sdu\sm4\assemblystation\service\MqttStartup.class
+dk\sdu\sm4\assemblystation\controller\MqttController.class
+module-info.class
+dk\sdu\sm4\assemblystation\service\MqttHandler.class
