@@ -12,5 +12,8 @@
         <module name="Core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AssemblyMQTT" target="9" />
+    </bytecodeTargetLevel>
   </component>
 </project>

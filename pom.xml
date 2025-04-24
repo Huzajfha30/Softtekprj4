@@ -121,5 +121,9 @@
     <module>AGV</module>
     <module>AssemblyStation</module>
     <module>Warehouse</module>
+    <module>AssemblyMQTT</module>
+    <module>Warehouse</module>
+    <module>AGV</module>
+    <module>AssemblyStation</module>
   </modules>
 </project>
