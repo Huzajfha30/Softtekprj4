@@ -1,5 +1,6 @@
+dk\sdu\sm4\assemblystation\controller\AssemblyController.class
+dk\sdu\sm4\assemblystation\service\AssemblyServiceImpl.class
 dk\sdu\sm4\assemblystation\service\CallbackHandler.class
 dk\sdu\sm4\assemblystation\service\MqttStartup.class
 dk\sdu\sm4\assemblystation\controller\MqttController.class
-module-info.class
 dk\sdu\sm4\assemblystation\service\MqttHandler.class

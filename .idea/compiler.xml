@@ -16,17 +16,14 @@
         <module name="Common" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AssemblyMQTT" target="9" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AGV" options="-parameters" />
       <module name="AssemblyStation" options="-parameters" />
-      <module name="Common" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Common\target\classes&quot;" />
-      <module name="Core" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\target\classes&quot;" />
-      <module name="Softtekprj4" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\target\classes&quot;" />
+      <module name="Common" options="--module-path C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Common\target\classes" />
+      <module name="Core" options="--module-path C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\target\classes" />
+      <module name="Softtekprj4" options="--module-path C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\target\classes" />
       <module name="Warehouse" options="-parameters" />
     </option>
   </component>

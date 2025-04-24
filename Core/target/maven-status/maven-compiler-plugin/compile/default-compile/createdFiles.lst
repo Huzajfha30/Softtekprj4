@@ -1,1 +1,4 @@
-module-info.class
+dk\sdu\sm4\models\AssemblyStatusModel.class
+dk\sdu\sm4\enums\AssemblyStatus.class
+dk\sdu\sm4\interfaces\IAssemblyService.class
+dk\sdu\sm4\App.class
