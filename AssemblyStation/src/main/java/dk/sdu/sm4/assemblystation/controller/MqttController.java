@@ -42,13 +42,13 @@ public class MqttController {
     public String subscribe(@RequestParam String topic) {
         try {
             mqttHandler.subscribe(topic);
-            return "Abonneret på topic: " + topic;
+            return "subscriber på topic: " + topic;
         } catch (MqttException e) {
             return "Fejl ved abonnement: " + e.getMessage();
         }
     }
 
-    @PostMapping("/disconnect")
+    @PostMapping("/disconnect") //muligvis useless
     public String disconnect() {
         try {
             mqttHandler.disconnect();

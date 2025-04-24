@@ -17,7 +17,7 @@ public class MqttStartup {
     public void init() {
         try {
             mqttHandler.connect("localhost", 1883); // docker settings
-            mqttHandler.subscribe("emulator/status");
+            mqttHandler.subscribe("emulator/status"); //vigtig for at se heartbeat ved execution
         } catch (Exception e) {
             System.out.println("Fejl ved forbindelse til MQTT: " + e.getMessage());
         }
