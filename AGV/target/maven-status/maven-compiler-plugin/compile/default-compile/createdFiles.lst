@@ -1,1 +1,4 @@
+dk\sdu\sm4\agv\client\AgvSimulatorClient.class
+dk\sdu\sm4\agv\controller\AgvController.class
 dk\sdu\sm4\agv\AgvApplication.class
+dk\sdu\sm4\agv\services\AgvServiceImpl.class

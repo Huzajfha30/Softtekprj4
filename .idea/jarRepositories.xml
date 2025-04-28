@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="eclipse-ee4j" />
+      <option name="name" value="eclipse-ee4j" />
+      <option name="url" value="https://repo.eclipse.org/content/repositories/ee4j/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="spring-releases" />
       <option name="name" value="spring-releases" />
       <option name="url" value="https://repo.spring.io/release" />

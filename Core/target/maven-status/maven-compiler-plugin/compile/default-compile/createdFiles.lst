@@ -1,4 +1,11 @@
-dk\sdu\sm4\models\AssemblyStatusModel.class
+dk\sdu\sm4\models\InventoryStatus.class
+dk\sdu\sm4\enums\AGVState.class
+dk\sdu\sm4\models\AGVProgramRequest.class
 dk\sdu\sm4\enums\AssemblyStatus.class
+dk\sdu\sm4\enums\WarehouseState.class
 dk\sdu\sm4\interfaces\IAssemblyService.class
+dk\sdu\sm4\interfaces\WarehouseService.class
 dk\sdu\sm4\App.class
+dk\sdu\sm4\enums\AGVOperation.class
+dk\sdu\sm4\models\AGVStatusModel.class
+dk\sdu\sm4\models\AssemblyStatusModel.class
