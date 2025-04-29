@@ -1,4 +1,14 @@
-C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\enums\AssemblyStatus.java
-C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\interfaces\IAssemblyService.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\models\AGVProgramRequest.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\models\AGVStatusModel.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\UI\config\WebConfig.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\interfaces\WarehouseService.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\models\InventoryStatus.java
 C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\models\AssemblyStatusModel.java
-C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\App.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\enums\AssemblyStatus.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\enums\AGVOperation.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\enums\WarehouseState.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\module-info.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\interfaces\IAssemblyService.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\UI\controller\HelloController.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\enums\AGVState.java
+C:\Users\huhub\Desktop\SOFTekprj4\Softtekprj4\Core\src\main\java\dk\sdu\sm4\UI\CoreApplication.java
