@@ -9,3 +9,5 @@ public class AgvApplication {
         SpringApplication.run(AgvApplication.class, args);
     }
 }
+
+// køre mvn spring-boot:run i stedet.
