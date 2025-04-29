@@ -12,8 +12,8 @@
         <module name="AGV" />
         <module name="Warehouse" />
         <module name="AssemblyStation" />
-        <module name="Core" />
         <module name="Common" />
+        <module name="Core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,9 +24,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AGV" options="-parameters" />
       <module name="AssemblyStation" options="-parameters" />
-      <module name="Common" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Common\target\classes&quot;" />
-      <module name="Core" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\target\classes&quot;" />
-      <module name="Softtekprj4" options="--module-path &quot;C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\target\classes&quot;" />
+      <module name="Common" options="" />
+      <module name="Core" options="" />
+      <module name="Softtekprj4" options="" />
       <module name="Warehouse" options="-parameters" />
     </option>
   </component>
