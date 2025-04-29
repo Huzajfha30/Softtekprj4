@@ -1,15 +1,14 @@
 package dk.sdu.sm4.assemblystation.service;
 
-import dk.sdu.sm4.assemblystation.service.MqttHandler;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MqttStartup {
 
-    private final MqttHandler mqttHandler;
+    private final MQTTHandler mqttHandler;
 
-    public MqttStartup(MqttHandler mqttHandler) {
+    public MqttStartup(MQTTHandler mqttHandler) {
         this.mqttHandler = mqttHandler;
     }
 

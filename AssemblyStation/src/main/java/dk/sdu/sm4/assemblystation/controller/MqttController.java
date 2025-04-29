@@ -1,7 +1,7 @@
 package dk.sdu.sm4.assemblystation.controller;
 
 
-import dk.sdu.sm4.assemblystation.service.MqttHandler;
+import dk.sdu.sm4.assemblystation.service.MQTTHandler;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mqtt")
 public class MqttController {
 
-    private final MqttHandler mqttHandler;
+    private final MQTTHandler mqttHandler;
 
     @Autowired
-    public MqttController(MqttHandler mqttHandler) {
+    public MqttController(MQTTHandler mqttHandler) {
         this.mqttHandler = mqttHandler;
     }
 

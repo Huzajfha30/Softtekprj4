@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MqttHandler {
+public class MQTTHandler {
 
     private MqttClient mqttClient;
     private final CallbackHandler callbackHandler;
 
     @Autowired
-    public MqttHandler(CallbackHandler callbackHandler) {
+    public MQTTHandler(CallbackHandler callbackHandler) {
         this.callbackHandler = callbackHandler;
     }
 
