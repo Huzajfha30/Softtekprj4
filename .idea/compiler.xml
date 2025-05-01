@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/Common/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/Presets/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -11,7 +12,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="AGV" />
         <module name="Warehouse" />
+        <module name="Presets" />
         <module name="AssemblyStation" />
+        <module name="Inventory" />
         <module name="Common" />
         <module name="Core" />
       </profile>

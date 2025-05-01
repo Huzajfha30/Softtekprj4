@@ -1,1 +1,4 @@
-module-info.class
+dk/sdu/sm4/UI/CoreApplication.class
+dk/sdu/sm4/UI/controller/HelloController.class
+dk/sdu/sm4/UI/config/WebConfig.class
+dk/sdu/sm4/UI/config/WebConfig$1.class

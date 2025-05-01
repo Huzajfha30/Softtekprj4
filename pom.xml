@@ -157,6 +157,8 @@
     <module>AssemblyStation</module>
     <module>Warehouse</module>
     <module>Common</module>
+    <module>Presets</module>
+    <module>Inventory</module>
   </modules>
 
 </project>

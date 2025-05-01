@@ -11,6 +11,10 @@
     <file url="file://$PROJECT_DIR$/Common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Inventory/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Inventory/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Presets/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Presets/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Warehouse/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Warehouse/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
