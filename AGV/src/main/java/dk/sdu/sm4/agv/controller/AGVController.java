@@ -16,7 +16,6 @@ public class AGVController {
 
     @GetMapping("/status")
     public AGVStatus getStatus() {
-
         return agvService.getStatus();
     }
 
