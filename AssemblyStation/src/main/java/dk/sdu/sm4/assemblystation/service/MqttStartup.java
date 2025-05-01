@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MqttStartup {
+public class MqttStartup { //klasse for at se heartbeat
 
     private final MQTTHandler mqttHandler;
 

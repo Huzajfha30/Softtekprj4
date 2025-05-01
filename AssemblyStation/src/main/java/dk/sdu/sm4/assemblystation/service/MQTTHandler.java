@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MQTTHandler {
+    // håndtere connect, publish, subscribe funktionaliteter. assemblystationService bruger den til at sende beskeder.
+    // holder styr på forbindelse
 
     private MqttClient mqttClient;
     private final CallbackHandler callbackHandler;
@@ -13,6 +15,10 @@ public class MQTTHandler {
     @Autowired
     public MQTTHandler(CallbackHandler callbackHandler) {
         this.callbackHandler = callbackHandler;
+    }
+
+    public boolean isConnected() {
+        return mqttClient != null && mqttClient.isConnected();
     }
 
     public void connect(String broker, int port) throws MqttException {

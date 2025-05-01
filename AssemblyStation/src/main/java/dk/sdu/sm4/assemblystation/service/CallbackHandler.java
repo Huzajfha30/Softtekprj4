@@ -4,7 +4,8 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CallbackHandler implements MqttCallback {
+public class CallbackHandler implements MqttCallback { //håndtere alle indkommende mqtt beskeder
+    //logger besekder fra emulator/status topic. uden denne vil ikke kunne se status/heartbeat messages fra emulatoren
 
     @Override
     public void connectionLost(Throwable cause) {

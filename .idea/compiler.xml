@@ -11,6 +11,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="AGV" />
+        <module name="CommonAssemblyStation" />
         <module name="Warehouse" />
         <module name="Presets" />
         <module name="AssemblyStation" />
