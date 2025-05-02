@@ -9,7 +9,7 @@ public class MQTTHandler {
     // håndtere connect, publish, subscribe funktionaliteter. assemblystationService bruger den til at sende beskeder.
     // holder styr på forbindelse
 
-    private MqttClient mqttClient;
+    private MqttClient mqttClient; // dependency fra eclipse.paho
     private final CallbackHandler callbackHandler;
 
     @Autowired
@@ -37,19 +37,19 @@ public class MQTTHandler {
 
     public void publish(String topic, String message) throws MqttException {
         if (mqttClient == null || !mqttClient.isConnected()) {
-            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet."));
+            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet. PUBLISH METODEN"));
         }
         mqttClient.publish(topic, new MqttMessage(message.getBytes()));
     }
 
     public void subscribe(String topic) throws MqttException {
         if (mqttClient == null || !mqttClient.isConnected()) {
-            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet."));
+            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet. SUBSCRIBE METODEN"));
         }
         mqttClient.subscribe(topic);
     }
 
-    public void disconnect() throws MqttException {
+    public void disconnect() throws MqttException { //bliver relevant med "stop knap"
         if (mqttClient != null && mqttClient.isConnected()) {
             mqttClient.disconnect();
             System.out.println("Forbindelsen til MQTT broker er lukket.");

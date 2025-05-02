@@ -12,7 +12,7 @@ public class MqttStartup { //klasse for at se heartbeat
         this.mqttHandler = mqttHandler;
     }
 
-    @PostConstruct
+    @PostConstruct //starter mqtt connection når applikationen starter med @PostConstruct
     public void init() {
         try {
             mqttHandler.connect("localhost", 1883); // docker settings

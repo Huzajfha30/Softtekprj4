@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // http://localhost:8080/swagger-ui/index.html#/assembly-station-controller/testAssemblyStation
-@RestController
+@RestController // restcontroller der eksponere endpoints /
 @RequestMapping("/assembly")
 public class AssemblyStationController {
-    private final IAssemblyStationService assemblyStationService;
+    private IAssemblyStationService assemblyStationService;
 
     public AssemblyStationController(IAssemblyStationService assemblyStationService) {
         this.assemblyStationService = assemblyStationService;
@@ -33,14 +33,14 @@ public class AssemblyStationController {
     }
 
     @GetMapping("/status")
-    public String getStatus() {
+    public String getStatus() { //tjekker status og health
         boolean isAvailable = assemblyStationService.isAvailable();
         boolean isHealthy = assemblyStationService.getHealthStatus();
         return "Station status - Available: " + isAvailable + ", Healthy: " + isHealthy;
     }
 
     @GetMapping("/checkhealth")
-    public String checkHealth() {
+    public String checkHealth() { //tjekker kun health
         boolean health = assemblyStationService.getHealthStatus();
         return "Assembly Station Health Status: " + health;
     }
