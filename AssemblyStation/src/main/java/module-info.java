@@ -9,6 +9,7 @@ module AssemblyStation {
     requires io.swagger.v3.oas.annotations; //for swagger ui
     requires io.swagger.v3.oas.models;
 
+
     requires CommonAssemblyStation;
 
 
