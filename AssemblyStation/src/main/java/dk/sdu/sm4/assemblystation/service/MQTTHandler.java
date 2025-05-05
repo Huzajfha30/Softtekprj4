@@ -1,6 +1,7 @@
 package dk.sdu.sm4.assemblystation.service;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ public class MQTTHandler {
     // håndtere connect, publish, subscribe funktionaliteter. assemblystationService bruger den til at sende beskeder.
     // holder styr på forbindelse
 
-    private MqttClient mqttClient;
+    private MqttClient mqttClient; // dependency fra eclipse.paho
     private final CallbackHandler callbackHandler;
 
     @Autowired
@@ -28,28 +29,33 @@ public class MQTTHandler {
         }
 
         String clientId = MqttClient.generateClientId();
-        mqttClient = new MqttClient("tcp://" + broker + ":" + port, clientId);
+        MemoryPersistence persistence = new MemoryPersistence(); // sørge for ingen folders bliver oprettet og holder det til memory
+        mqttClient = new MqttClient("tcp://" + broker + ":" + port, clientId, persistence);
+
+        MqttConnectOptions connectOptions = new MqttConnectOptions();
+        connectOptions.setCleanSession(true); // ingen folders
         mqttClient.setCallback(callbackHandler);
-        mqttClient.connect();
+        mqttClient.connect(connectOptions);
+
 
         System.out.println("Forbundet til MQTT broker på " + broker + ":" + port);
     }
 
     public void publish(String topic, String message) throws MqttException {
         if (mqttClient == null || !mqttClient.isConnected()) {
-            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet."));
+            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet. PUBLISH METODEN"));
         }
         mqttClient.publish(topic, new MqttMessage(message.getBytes()));
     }
 
     public void subscribe(String topic) throws MqttException {
         if (mqttClient == null || !mqttClient.isConnected()) {
-            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet."));
+            throw new MqttException(new Throwable("MQTT-klient er ikke forbundet. SUBSCRIBE METODEN"));
         }
         mqttClient.subscribe(topic);
     }
 
-    public void disconnect() throws MqttException {
+    public void disconnect() throws MqttException { //bliver relevant med "stop knap"
         if (mqttClient != null && mqttClient.isConnected()) {
             mqttClient.disconnect();
             System.out.println("Forbindelsen til MQTT broker er lukket.");
