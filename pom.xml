@@ -157,7 +157,7 @@
     <module>AssemblyStation</module>
     <module>Warehouse</module>
     <module>Common</module>
-      <module>CommonAssemblyStation</module>
+    <module>CommonAssemblyStation</module>
   </modules>
 
 </project>

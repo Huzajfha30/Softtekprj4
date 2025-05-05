@@ -11,17 +11,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="AGV" />
-        <module name="CommonAssemblyStation" />
         <module name="Warehouse" />
-        <module name="Presets" />
         <module name="AssemblyStation" />
-        <module name="Inventory" />
+        <module name="CommonAssemblyStation" />
         <module name="Common" />
         <module name="Core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AssemblyMQTT" target="9" />
+      <module name="Inventory" target="21" />
+      <module name="Presets" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

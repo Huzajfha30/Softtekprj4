@@ -1,0 +1,6 @@
+module AssemblyStation {
+
+
+    requires CommonAssemblyStation;
+
+}
