@@ -11,6 +11,9 @@ module AssemblyStation {
 
 
     requires CommonAssemblyStation;
+    requires org.json;
+    requires com.fasterxml.jackson.databind;
+    requires spring.webmvc;
 
 
     exports dk.sdu.sm4.assemblystation.controller;
