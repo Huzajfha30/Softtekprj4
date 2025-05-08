@@ -12,6 +12,11 @@ services:
     ports:
       - 8082:80
 
+  st4-agv2:
+    image: thmork/st4-agv:latest
+    ports:
+     - 8083:80
+
   st4-warehouse:
     image: thmork/st4-warehouse:latest
     ports:

@@ -1,7 +1,11 @@
-dk\sdu\sm4\assemblystation\controller\AssemblyStationController.class
-dk\sdu\sm4\assemblystation\service\AssemblyStationService.class
+dk/sdu/sm4/assemblystation/controller/AssemblyStatusController.class
 module-info.class
-dk\sdu\sm4\assemblystation\App.class
-dk\sdu\sm4\assemblystation\service\CallbackHandler.class
-dk\sdu\sm4\assemblystation\service\MqttStartup.class
-dk\sdu\sm4\assemblystation\service\MQTTHandler.class
+dk/sdu/sm4/assemblystation/service/CallbackHandler.class
+dk/sdu/sm4/assemblystation/service/AssemblyStationService.class
+dk/sdu/sm4/assemblystation/config/WebConfig$1.class
+dk/sdu/sm4/assemblystation/model/AssemblyStatus.class
+dk/sdu/sm4/assemblystation/controller/AssemblyStationController.class
+dk/sdu/sm4/assemblystation/config/WebConfig.class
+dk/sdu/sm4/assemblystation/service/MQTTHandler.class
+dk/sdu/sm4/assemblystation/service/MqttStartup.class
+dk/sdu/sm4/assemblystation/App.class
