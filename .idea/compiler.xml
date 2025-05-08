@@ -10,20 +10,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="AGV" />
-        <module name="CommonAssemblyStation" />
         <module name="Warehouse" />
         <module name="AssemblyStation" />
+        <module name="CommonAGV" />
+        <module name="CommonAssemblyStation" />
+        <module name="AGV2" />
         <module name="Common" />
         <module name="Core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AssemblyMQTT" target="9" />
+      <module name="common-agv" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AGV" options="-parameters" />
+      <module name="AGV2" options="-parameters" />
       <module name="AssemblyStation" options="-parameters" />
       <module name="Common" options="" />
       <module name="Core" options="" />

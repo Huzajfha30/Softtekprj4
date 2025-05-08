@@ -1,0 +1,4 @@
+--patch-module
+AGV2=_
+--add-reads
+AGV2=ALL-UNNAMED

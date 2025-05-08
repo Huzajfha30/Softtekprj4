@@ -153,7 +153,9 @@
 
   <modules>
     <module>Core</module>
+    <module>CommonAGV</module>
     <module>AGV</module>
+    <module>AGV2</module>
     <module>AssemblyStation</module>
     <module>Warehouse</module>
     <module>Common</module>

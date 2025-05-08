@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>dk.sdu.sm4</groupId>
-            <artifactId>Common</artifactId>
+            <artifactId>CommonAGV</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -51,6 +51,15 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <!-- run tests on the classpath (not module‐path) -->
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
             <!-- Kopiér JAR til mods-mvn -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
