@@ -158,6 +158,7 @@
     <module>Warehouse</module>
     <module>Common</module>
       <module>CommonAssemblyStation</module>
+      <module>CommonWarehouse</module>
   </modules>
 
 </project>
