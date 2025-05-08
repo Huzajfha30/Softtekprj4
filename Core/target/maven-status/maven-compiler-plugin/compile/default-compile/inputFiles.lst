@@ -1,14 +1,14 @@
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\enums\WarehouseState.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\enums\AssemblyStatus.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\UI\CoreApplication.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\module-info.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\models\InventoryStatus.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\models\AGVStatusModel.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\enums\AGVOperation.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\UI\config\WebConfig.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\UI\controller\HelloController.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\interfaces\WarehouseService.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\models\AssemblyStatusModel.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\interfaces\IAssemblyService.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\models\AGVProgramRequest.java
-C:\Users\Nicol\Desktop\sdu\4 sem\4SemProject\Softtekprj4_NEW_JAVA\Core\src\main\java\dk\sdu\sm4\enums\AGVState.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/interfaces/WarehouseService.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/enums/AssemblyStatus.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/enums/WarehouseState.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/module-info.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/enums/AGVState.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/enums/AGVOperation.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/UI/CoreApplication.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/models/AssemblyStatusModel.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/interfaces/IAssemblyService.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/UI/controller/HelloController.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/models/AGVStatusModel.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/UI/config/WebConfig.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/models/InventoryStatus.java
+/Users/helenahejsel/Desktop/Softtekprj4/Core/src/main/java/dk/sdu/sm4/models/AGVProgramRequest.java

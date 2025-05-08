@@ -1,0 +1,4 @@
+--patch-module
+CommonAssemblyStation=_
+--add-reads
+CommonAssemblyStation=ALL-UNNAMED

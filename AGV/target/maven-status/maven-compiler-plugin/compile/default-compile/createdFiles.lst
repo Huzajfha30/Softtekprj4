@@ -1,5 +1,3 @@
-dk\sdu\sm4\agv\model\AGVProgramRequest.class
-dk\sdu\sm4\agv\model\AGVStatus.class
 module-info.class
 dk\sdu\sm4\agv\controller\AGVController.class
 dk\sdu\sm4\agv\service\AGVService.class
