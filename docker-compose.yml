@@ -20,7 +20,7 @@ services:
   st4-warehouse:
     image: thmork/st4-warehouse:latest
     ports:
-      - 8081:80
+      - 8085:80
 
   st4-assemblystation:
     image: thmork/st4-assemblystation:latest

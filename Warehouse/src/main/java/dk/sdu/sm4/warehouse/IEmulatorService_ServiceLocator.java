@@ -7,6 +7,8 @@
 
 package dk.sdu.sm4.warehouse;
 
+import org.springframework.context.annotation.Bean;
+
 public class IEmulatorService_ServiceLocator extends org.apache.axis.client.Service implements dk.sdu.sm4.warehouse.IEmulatorService_Service {
 
     public IEmulatorService_ServiceLocator() {
