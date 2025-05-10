@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dk.sdu.sm4.commonassemblystation.AppTest" time="0.019" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dk.sdu.sm4.commonassemblystation.AppTest" time="0.016" tests="1" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="23"/>
-    <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation/target/test-classes:/Users/helenahejsel/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
-    <property name="java.vm.vendor" value="Homebrew"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation\target\test-classes;C:\Users\Nicol\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
-    <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="23"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Copenhagen"/>
+    <property name="user.country.format" value="DK"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="DK"/>
-    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/23.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter /Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation/target/surefire 2025-05-07T12-15-56_988-jvmRun1 surefire-20250507121558316_1tmp surefire_0-20250507121558316_2tmp"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Users\Nicol\.jdks\openjdk-21.0.2\bin"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\Nicol\AppData\Local\Temp\surefire77710432125127647 2025-05-08T12-08-03_373-jvmRun1 surefire-20250508120810101_1tmp surefire_0-20250508120810101_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation/target/test-classes:/Users/helenahejsel/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
+    <property name="surefire.test.class.path" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation\target\test-classes;C:\Users\Nicol\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/helenahejsel"/>
-    <property name="user.language" value="da"/>
+    <property name="user.home" value="C:\Users\Nicol"/>
+    <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="jdk.module.path" value="/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation/target/classes"/>
-    <property name="java.version.date" value="2025-01-21"/>
-    <property name="java.home" value="/opt/homebrew/Cellar/openjdk/23.0.2/libexec/openjdk.jdk/Contents/Home"/>
-    <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation"/>
+    <property name="jdk.module.path" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation\target\classes"/>
+    <property name="java.version.date" value="2024-01-16"/>
+    <property name="java.home" value="C:\Users\Nicol\.jdks\openjdk-21.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-booter/3.2.5/surefire-booter-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-api/3.2.5/surefire-api-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-logger-api/3.2.5/surefire-logger-api-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-shared-utils/3.2.5/surefire-shared-utils-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-extensions-spi/3.2.5/surefire-extensions-spi-3.2.5.jar:/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation/target/test-classes:/Users/helenahejsel/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/surefire-junit3/3.2.5/surefire-junit3-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar:/Users/helenahejsel/.m2/repository/org/apache/maven/surefire/common-junit3/3.2.5/common-junit3-3.2.5.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-booter\3.2.5\surefire-booter-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-api\3.2.5\surefire-api-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-logger-api\3.2.5\surefire-logger-api-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-shared-utils\3.2.5\surefire-shared-utils-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-extensions-spi\3.2.5\surefire-extensions-spi-3.2.5.jar;C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation\target\test-classes;C:\Users\Nicol\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\surefire-junit3\3.2.5\surefire-junit3-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\common-java5\3.2.5\common-java5-3.2.5.jar;C:\Users\Nicol\.m2\repository\org\apache\maven\surefire\common-junit3\3.2.5\common-junit3-3.2.5.jar"/>
+    <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="23.0.2"/>
-    <property name="user.name" value="helenahejsel"/>
-    <property name="stdout.encoding" value="UTF-8"/>
-    <property name="path.separator" value=":"/>
-    <property name="os.version" value="15.0"/>
+    <property name="java.runtime.version" value="21.0.2+13-58"/>
+    <property name="user.name" value="Nicol"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Homebrew"/>
-    <property name="localRepository" value="/Users/helenahejsel/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
-    <property name="java.io.tmpdir" value="/var/folders/g9/4l9rxjq55594vdyzv_nc_56h0000gn/T/"/>
-    <property name="java.version" value="23.0.2"/>
-    <property name="user.dir" value="/Users/helenahejsel/Desktop/Softtekprj4/CommonAssemblyStation"/>
-    <property name="os.arch" value="aarch64"/>
+    <property name="localRepository" value="C:\Users\Nicol\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Nicol\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2025.1.1"/>
+    <property name="java.version" value="21.0.2"/>
+    <property name="user.dir" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation"/>
+    <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/helenahejsel/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Users\Nicol\.jdks\openjdk-21.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\mosquitto;C:\Users\Nicol\.config\herd\bin\nvm;C:\Program Files\nodejs;C:\Users\Nicol\AppData\Local\Programs\Python\Python312\;C:\Users\Nicol\AppData\Local\Programs\Python\Python312\Scripts\;C:\Program Files\Kubernetes\Minikube;;C:\minikube;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\Nicol\.config\herd\bin;C:\Users\Nicol\AppData\Local\Programs\Python\Launcher\;C:\Users\Nicol\AppData\Local\Microsoft\WindowsApps;C:\Users\Nicol\AppData\Local\GitHubDesktop\bin;C:\Users\Nicol\AppData\Local\gitkraken\bin;C:\Users\Nicol\AppData\Local\Programs\Python\Python312\;C:\Users\Nicol\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Nicol\AppData\Local\Microsoft\WindowsApps;C:\Program Files\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin;;C:\Program Files\JetBrains\JetBrains Rider 2025.1\bin;;."/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Homebrew"/>
-    <property name="java.vm.version" value="23.0.2"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.class.version" value="67.0"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21.0.2+13-58"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
   <testcase name="testApp" classname="dk.sdu.sm4.commonassemblystation.AppTest" time="0.001"/>
 </testsuite>

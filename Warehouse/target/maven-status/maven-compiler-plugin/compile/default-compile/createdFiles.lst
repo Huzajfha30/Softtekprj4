@@ -1,5 +1,5 @@
-dk/sdu/sm4/warehouse/IEmulatorService_Service.class
-dk/sdu/sm4/warehouse/BasicHttpBinding_IEmulatorServiceStub.class
-dk/sdu/sm4/warehouse/WarehouseApplication.class
-dk/sdu/sm4/warehouse/IEmulatorService_ServiceLocator.class
-dk/sdu/sm4/warehouse/IEmulatorService_PortType.class
+dk\sdu\sm4\warehouse\IEmulatorService_PortType.class
+dk\sdu\sm4\warehouse\IEmulatorService_ServiceLocator.class
+dk\sdu\sm4\warehouse\WarehouseApplication.class
+dk\sdu\sm4\warehouse\IEmulatorService_Service.class
+dk\sdu\sm4\warehouse\BasicHttpBinding_IEmulatorServiceStub.class
