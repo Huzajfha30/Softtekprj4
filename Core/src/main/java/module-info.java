@@ -5,7 +5,17 @@ module Core {
     requires spring.webmvc;
     requires jakarta.jws;
     requires spring.web;
-    exports dk.sdu.sm4.models;
-    exports dk.sdu.sm4.interfaces;
-    exports dk.sdu.sm4.enums;
+    requires org.eclipse.paho.client.mqttv3;
+
+    requires CommonAGV;
+    requires CommonAssemblyStation;
+    requires spring.beans;
+    requires org.json;
+
+    exports dk.sdu.sm4.service;
+
+    opens dk.sdu.sm4 to spring.core;
+    opens dk.sdu.sm4.service to spring.beans, spring.core;
+    opens dk.sdu.sm4.controller to spring.beans, spring.web;
+    opens dk.sdu.sm4.config to spring.beans, spring.core;
 }

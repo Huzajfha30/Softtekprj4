@@ -4,4 +4,5 @@ public interface AGVClient {
     AGVStatus getStatus();
     AGVStatus loadProgram(String programName);
     AGVStatus executeProgram();
+    AGVStatus resetAGV();
 }

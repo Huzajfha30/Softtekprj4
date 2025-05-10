@@ -1,6 +1,7 @@
 package dk.sdu.sm4.assemblystation.service;
 
 
+import dk.sdu.sm4.assemblystation.model.AssemblyStatus;
 import dk.sdu.sm4.commonassemblystation.IAssemblyStationService;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.stereotype.Service;
@@ -8,9 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AssemblyStationService implements IAssemblyStationService {
     private final MQTTHandler mqttHandler;
+    private final CallbackHandler callbackHandler;
 
-    public AssemblyStationService(MQTTHandler mqttHandler) {
+    public AssemblyStationService(MQTTHandler mqttHandler, CallbackHandler callbackHandler) {
         this.mqttHandler = mqttHandler;
+        this.callbackHandler = callbackHandler;
     }
 
     @Override
@@ -39,4 +42,21 @@ public class AssemblyStationService implements IAssemblyStationService {
         }
     }
 
+    @Override
+    public dk.sdu.sm4.commonassemblystation.AssemblyStatus getCurrentStatus() {
+        // Get status from the CallbackHandler
+        dk.sdu.sm4.assemblystation.model.AssemblyStatus localStatus = callbackHandler.getLatestStatus();
+
+        if (localStatus == null) {
+            return null;
+        }
+
+        // Convert to the interface's AssemblyStatus class
+        return new dk.sdu.sm4.commonassemblystation.AssemblyStatus(
+                localStatus.getLastOperation(),
+                localStatus.getCurrentOperation(),
+                localStatus.getState()
+        );
+
+    }
 }

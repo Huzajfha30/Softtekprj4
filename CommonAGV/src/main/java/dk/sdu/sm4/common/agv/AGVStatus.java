@@ -21,4 +21,6 @@ public class AGVStatus {
 
     public String getTimeStamp() { return timeStamp; }
     public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
+
+
 }

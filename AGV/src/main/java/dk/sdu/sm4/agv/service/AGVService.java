@@ -1,4 +1,4 @@
-package dk.sdu.sm4.agv.service;   // or dk.sdu.sm4.agv2.service
+package dk.sdu.sm4.agv.service;
 
 import dk.sdu.sm4.common.agv.AGVClient;
 import dk.sdu.sm4.common.agv.AGVProgramRequest;
@@ -35,5 +35,17 @@ public class AGVService implements AGVClient {
         HttpEntity<AGVProgramRequest> entity = new HttpEntity<>(request, headers);
         return restTemplate.exchange(AGV_URL, HttpMethod.PUT, entity, AGVStatus.class)
                 .getBody();
+    }
+    @Override
+    public AGVStatus resetAGV() {
+        try {
+            AGVProgramRequest request = new AGVProgramRequest(null, 0); // Command 0 for reset
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<AGVProgramRequest> entity = new HttpEntity<>(request, headers);
+            return restTemplate.exchange(AGV_URL, HttpMethod.PUT, entity, AGVStatus.class).getBody();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to reset AGV: " + e.getMessage(), e);
+        }
     }
 }

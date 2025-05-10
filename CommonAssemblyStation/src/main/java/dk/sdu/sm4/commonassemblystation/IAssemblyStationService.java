@@ -6,4 +6,6 @@ public interface IAssemblyStationService {
     boolean getHealthStatus();
 
     boolean isAvailable();
+
+    AssemblyStatus getCurrentStatus();
 }

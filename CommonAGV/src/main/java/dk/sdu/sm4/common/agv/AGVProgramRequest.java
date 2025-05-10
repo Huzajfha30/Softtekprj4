@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AGVProgramRequest {
 
     /** Must match the simulator’s “Program name” field exactly */
-    @JsonProperty("Program name")
+    @JsonProperty("program name")
     private String programName;
 
     /** Must match the simulator’s “State” field exactly */
-    @JsonProperty("State")
+    @JsonProperty("state")
     private int state;
 
     public AGVProgramRequest() {}
