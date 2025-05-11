@@ -1,4 +1,4 @@
-package dk.sdu.sm4.config;
+package dk.sdu.sm4.service;
 
 import dk.sdu.sm4.commonassemblystation.AssemblyStatus;
 import dk.sdu.sm4.commonassemblystation.IAssemblyStationService;
@@ -6,7 +6,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.JSONObject;
 
-public class AssemblyStationClientImpl implements IAssemblyStationService {
+public class AssemblyStationServiceImpl implements IAssemblyStationService {
 
 
     private static String MqttBrokerURL = "tcp://localhost:1883";
@@ -18,7 +18,7 @@ public class AssemblyStationClientImpl implements IAssemblyStationService {
     private AssemblyStatus latestStatus;
 
     /** Constructor - initializes MQTT connection  */
-    public AssemblyStationClientImpl() {
+    public AssemblyStationServiceImpl() {
         initializeMqttClient();
     }
 

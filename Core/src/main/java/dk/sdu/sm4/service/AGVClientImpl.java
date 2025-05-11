@@ -1,4 +1,4 @@
-package dk.sdu.sm4.config;
+package dk.sdu.sm4.service;
 
 import dk.sdu.sm4.common.agv.AGVClient;
 import dk.sdu.sm4.common.agv.AGVProgramRequest;

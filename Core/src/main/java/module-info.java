@@ -18,4 +18,6 @@ module Core {
     opens dk.sdu.sm4.service to spring.beans, spring.core;
     opens dk.sdu.sm4.controller to spring.beans, spring.web;
     opens dk.sdu.sm4.config to spring.beans, spring.core;
+    exports dk.sdu.sm4.model;
+    opens dk.sdu.sm4.model to spring.beans, spring.core;
 }

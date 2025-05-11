@@ -1,25 +1,17 @@
-package dk.sdu.sm4.service;
+package dk.sdu.sm4.model;
 
-public class ProcessFlowStatus {
+public class ProcessFlowModel { // transfer status information from service to controller - serialized to JSON.
     private String currentStep;
     private boolean running;
     private boolean error;
     private String errorMessage;
-    private int progress; // New field to track progress percentage (0-100)
+    private int progress; // track progress percentage (0-100)
 
     // Default constructor for Jackson
-    public ProcessFlowStatus() {
+    public ProcessFlowModel() {
     }
 
-    public ProcessFlowStatus(String currentStep, boolean running, boolean error, String errorMessage, int progress) {
-        this.currentStep = currentStep;
-        this.running = running;
-        this.error = error;
-        this.errorMessage = errorMessage;
-        this.progress = progress;
-    }
-
-    public boolean isRunning() {
+    public boolean isRunning(boolean b) {
         return running;
     }
 

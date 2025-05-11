@@ -4,6 +4,7 @@ import dk.sdu.sm4.common.agv.AGVClient;
 import dk.sdu.sm4.common.agv.AGVProgramRequest;
 import dk.sdu.sm4.common.agv.AGVStatus;
 import dk.sdu.sm4.commonassemblystation.IAssemblyStationService;
+import dk.sdu.sm4.model.ProcessFlowModel;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,9 +15,11 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ProcessFlowService {
 
-    // Services - interfaces
+    // interfaces
     private final AGVClient agvClient;
     private final IAssemblyStationService assemblyStationService;
+
+    private final ProcessFlowModel processFlow = new ProcessFlowModel();
 
     private static final String agvApiUrl = "http://localhost:8082/v1/status";
     private static final int agvIdleState = 1;
@@ -27,12 +30,6 @@ public class ProcessFlowService {
     private static final int assemblyWaitTime = 60000; // venter max 60 sek
     private static final int assemblyProcessId = 12345;
 
-    // State tracking
-    private int progress = 0;
-    private boolean isRunning = false;
-    private String currentStep = "Not started";
-    private boolean error = false;
-    private String errorMessage = null;
     private Thread processThread;
 
     public ProcessFlowService(AGVClient agvClient, IAssemblyStationService assemblyStationService) {
@@ -44,8 +41,9 @@ public class ProcessFlowService {
     /**
      * Get the current status of the process flow
      */
-    public ProcessFlowStatus getProcessStatus() {
-        return new ProcessFlowStatus(currentStep, isRunning, error, errorMessage, progress);
+
+    public ProcessFlowModel getProcessStatus() {
+        return processFlow; // Return the model directly
     }
 
     /**
@@ -58,7 +56,7 @@ public class ProcessFlowService {
 
         processThread.interrupt();
         resetState();
-        currentStep = "Cancelled";
+        processFlow.setCurrentStep("Cancelled");
     }
 
     /**
@@ -95,7 +93,7 @@ public class ProcessFlowService {
         } catch (Exception e) {
             handleProcessError(e);
         } finally {
-            isRunning = false;
+            processFlow.isRunning(false);
         }
     }
 
@@ -183,30 +181,29 @@ public class ProcessFlowService {
      * Initialize process state for a new run
      */
     private void initializeProcessState() {
-        isRunning = true;
-        error = false;
-        errorMessage = null;
-        currentStep = "Starting process flow";
-        progress = 0;
+        processFlow.setRunning(true);
+        processFlow.setError(false);
+        processFlow.setErrorMessage(null);
+        processFlow.setCurrentStep("Starting process flow");
+        processFlow.setProgress(0);
     }
 
     /**
      * Reset state to initial values
      */
     private void resetState() {
-        isRunning = false;
-        error = false;
-        errorMessage = null;
-        currentStep = "Not started";
-        progress = 0;
+        processFlow.setRunning(false);
+        processFlow.setError(false);
+        processFlow.setErrorMessage(null);
+        processFlow.setCurrentStep("Not started");
+        processFlow.setProgress(0);
     }
 
     /**
      * Update the current step description
      */
     private void updateStep(String step) {
-        this.currentStep = step;
-        this.progress = 0;
+        processFlow.setCurrentStep(step);
         checkForInterruption();
     }
 
@@ -214,23 +211,23 @@ public class ProcessFlowService {
      * Update the progress percentage
      */
     private void updateProgress(int newProgress) {
-        this.progress = Math.max(0, Math.min(100, newProgress));
+        processFlow.setProgress(Math.max(0, Math.min(100, newProgress)));
     }
 
     /**
      * Mark the process as complete
      */
     private void completeProcess() {
-        currentStep = "Process completed";
-        progress = 100;
+        processFlow.setCurrentStep("Process completed");
+        processFlow.setProgress(100);
     }
 
     /**
      * Handle process interruption
      */
     private void handleInterruption() {
-        currentStep = "Process cancelled";
-        progress = 0;
+        processFlow.setCurrentStep("Process cancelled");
+        processFlow.setProgress(0);
         Thread.currentThread().interrupt();
     }
 
@@ -238,9 +235,9 @@ public class ProcessFlowService {
      * Handle process errors
      */
     private void handleProcessError(Exception e) {
-        error = true;
-        errorMessage = e.getMessage();
-        currentStep = "Error: " + e.getMessage();
+        processFlow.setError(true);
+        processFlow.setErrorMessage(e.getMessage());
+        processFlow.setCurrentStep("Error: " + e.getMessage());
         System.err.println("Error in process flow: " + e.getMessage());
     }
 

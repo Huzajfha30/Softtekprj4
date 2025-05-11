@@ -14,6 +14,7 @@ import java.util.Map;
 @RequestMapping("/api/assembly")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AssemblyStationControllerMonitor {
+
     private final IAssemblyStationService assemblyStationService;
 
     @Autowired
@@ -25,8 +26,6 @@ public class AssemblyStationControllerMonitor {
     public ResponseEntity<?> getStatus() {
         try {
             var status = assemblyStationService.getCurrentStatus();
-
-            // Force a refresh of the status by checking health
             assemblyStationService.getHealthStatus();
 
             if (status == null) {

@@ -1,7 +1,7 @@
 package dk.sdu.sm4.controller;
 
 import dk.sdu.sm4.service.ProcessFlowService;
-import dk.sdu.sm4.service.ProcessFlowStatus;
+import dk.sdu.sm4.model.ProcessFlowModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +30,9 @@ public class ProcessFlowController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity<ProcessFlowStatus> getProcessStatus() {
+    public ResponseEntity<ProcessFlowModel> getProcessStatus() {
         try {
-            ProcessFlowStatus status = processFlowService.getProcessStatus();
+            ProcessFlowModel status = processFlowService.getProcessStatus();
             return ResponseEntity.ok(status);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
