@@ -11,6 +11,16 @@ public class InsertItemRequest {
     @Schema(description = "Name of the item to insert", example = "Widget", required = true)
     private String name;
 
+    @Schema(description = "Board type (optional)", example = "1")
+    private String board;
+
+    @Schema(description = "Wheels type (optional)", example = "2")
+    private String wheels;
+
+    @Schema(description = "Trucks type (optional)", example = "1")
+    private String trucks;
+
+    // Getters and setters
     public int getTrayId() {
         return trayId;
     }
@@ -25,5 +35,29 @@ public class InsertItemRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
+
+    public String getWheels() {
+        return wheels;
+    }
+
+    public void setWheels(String wheels) {
+        this.wheels = wheels;
+    }
+
+    public String getTrucks() {
+        return trucks;
+    }
+
+    public void setTrucks(String trucks) {
+        this.trucks = trucks;
     }
 }

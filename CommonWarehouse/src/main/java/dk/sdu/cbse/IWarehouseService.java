@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 
 public interface IWarehouseService {
+    int findTrayWithSpace() throws RemoteException;
     void pickItem(int trayId) throws RemoteException;
     void insertItem(int trayId, java.lang.String name) throws RemoteException;
     java.lang.String getInventory() throws RemoteException;
