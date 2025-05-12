@@ -1,5 +1,7 @@
 package dk.sdu.sm4.warehouse.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.sdu.cbse.IWarehouseService;
 import dk.sdu.sm4.warehouse.IEmulatorService_PortType;
 import dk.sdu.sm4.warehouse.IEmulatorService_ServiceLocator;
@@ -28,6 +30,37 @@ public class WarehouseService implements IWarehouseService {
     public WarehouseService(IEmulatorService_ServiceLocator serviceLocator, IEmulatorService_PortType port) throws ServiceException {
         this.serviceLocator = serviceLocator;
         this.port = port;
+    }
+
+
+    private int parseTrayIdWithSpace(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(json);
+            JsonNode inventory = root.get("Inventory");
+
+            for (JsonNode tray : inventory) {
+                int id = tray.get("Id").asInt();
+                String content = tray.get("Content").asText();
+                if (content == null || content.isEmpty()) {
+                    return id;
+                }
+            }
+
+            return -1; // ingen ledige trays
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
+    @Override
+    public int findTrayWithSpace() throws RemoteException {
+        String xml = getInventory(); // brug eksisterende metode
+        // TODO: Parse xml og find en ledig tray
+        // Fx: returner 3 hvis tray 3 er tom
+        return parseTrayIdWithSpace(xml); // du skriver selv denne metode
     }
 
     @Override

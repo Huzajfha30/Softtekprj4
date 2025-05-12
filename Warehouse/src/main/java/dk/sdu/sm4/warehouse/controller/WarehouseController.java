@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,7 +17,7 @@ import java.util.Map;
 public class WarehouseController {
 
     private final IWarehouseService warehouseService;
-
+    private final List<InsertItemRequest> presets = new ArrayList<>();
     public WarehouseController(IWarehouseService warehouseService) {
         this.warehouseService = warehouseService;
     }
@@ -45,24 +47,37 @@ public class WarehouseController {
     }
 
     @PostMapping("/insertItem")
-    public ResponseEntity<String> insertItem(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Tray ID and item name",
-                    required = true
-            )
-            @Valid @RequestBody InsertItemRequest req) {
-
+    public ResponseEntity<String> insertItem(@Valid @RequestBody InsertItemRequest req) {
         try {
-            warehouseService.insertItem(req.getTrayId(), req.getName());
-            return ResponseEntity.ok(
-                    "Inserted '" + req.getName() + "' into tray " + req.getTrayId()
-            );
+            int trayId = req.getTrayId();
+
+            if (trayId == -1) {
+                trayId = warehouseService.findTrayWithSpace();
+                if (trayId == -1) {
+                    return ResponseEntity
+                            .status(HttpStatus.CONFLICT)
+                            .body("Ingen tilgængelig bakke med plads");
+                }
+            }
+
+            warehouseService.insertItem(trayId, req.getName());
+
+            // 💾 Gem også som preset i RAM
+            presets.add(req);
+
+            return ResponseEntity.ok("Inserted '" + req.getName() + "' into tray " + trayId);
         } catch (RemoteException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_GATEWAY)
                     .body("Error inserting item: " + e.getMessage());
         }
     }
+
+    @GetMapping("/getPresets")
+    public ResponseEntity<List<InsertItemRequest>> getPresets() {
+        return ResponseEntity.ok(presets);
+    }
+
 
     @PostMapping("/pickOrder")
     public ResponseEntity<String> pickOrderItems(
