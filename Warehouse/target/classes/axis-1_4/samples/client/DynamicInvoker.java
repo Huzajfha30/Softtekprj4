@@ -50,7 +50,7 @@ import java.util.Vector;
 /**
  * This sample shows how to use Axis for completely dynamic invocations
  * as it is completely stubless execution. It supports both doc/lit and rpc/encoded
- * services. But this sample does not support complex types 
+ * dk.sdu.sm4.common.agv.AGVClient. But this sample does not support complex types
  * (it could if there was defined a to encode complex values as command line arguments).
  *
  * @author Davanum Srinivas (dims@yahoo.com)

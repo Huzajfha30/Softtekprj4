@@ -91,7 +91,7 @@ public class EchoAttachment {
 
         call.setTargetEndpointAddress(new URL(opts.getURL())); //Set the target service host and service location, 
 
-        call.setOperationName(new QName("urn:EchoAttachmentsService", "echo")); //This is the target services method to invoke.
+        call.setOperationName(new QName("urn:EchoAttachmentsService", "echo")); //This is the target dk.sdu.sm4.common.agv.AGVClient method to invoke.
 
         QName qnameAttachment = new QName("urn:EchoAttachmentsService", "DataHandler");
 
@@ -201,7 +201,7 @@ public class EchoAttachment {
 
         call.setTargetEndpointAddress(new URL(opts.getURL())); //Set the target service host and service location, 
 
-        call.setOperationName(new QName("urn:EchoAttachmentsService", "echoDir")); //This is the target services method to invoke.
+        call.setOperationName(new QName("urn:EchoAttachmentsService", "echoDir")); //This is the target dk.sdu.sm4.common.agv.AGVClient method to invoke.
 
         QName qnameAttachment = new QName("urn:EchoAttachmentsService", "DataHandler");
 
@@ -450,7 +450,7 @@ public class EchoAttachment {
      *  @return True if sent and compared.
      */
     public boolean echoUsingSAAJ(String filename) throws Exception {
-        String endPointURLString =  "http://localhost:" +opts.getPort() + "/axis/services/urn:EchoAttachmentsService";
+        String endPointURLString =  "http://localhost:" +opts.getPort() + "/axis/dk.sdu.sm4.common.agv.AGVClient/urn:EchoAttachmentsService";
 
         SOAPConnectionFactory soapConnectionFactory =
                 javax.xml.soap.SOAPConnectionFactory.newInstance();

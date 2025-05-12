@@ -1083,7 +1083,7 @@ public class SOAPMonitorApplet extends JApplet {
         }
 
         /**
-         * Get the current list of services
+         * Get the current list of dk.sdu.sm4.common.agv.AGVClient
          */
         public Vector getServiceList() {
             Vector list = null;
@@ -1207,14 +1207,14 @@ public class SOAPMonitorApplet extends JApplet {
         }
 
         /**
-         * Get list of services to be included
+         * Get list of dk.sdu.sm4.common.agv.AGVClient to be included
          */
         public Vector getFilterIncludeList() {
             return filter_include_list;
         }
 
         /**
-         * Get list of services to be excluded
+         * Get list of dk.sdu.sm4.common.agv.AGVClient to be excluded
          */
         public Vector getFilterExcludeList() {
             return filter_exclude_list;

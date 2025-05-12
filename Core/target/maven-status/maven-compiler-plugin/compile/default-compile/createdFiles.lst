@@ -1,11 +1,8 @@
-dk\sdu\sm4\service\AssemblyStationServiceImpl.class
 dk\sdu\sm4\controller\AssemblyStationControllerMonitor.class
 dk\sdu\sm4\controller\ProcessFlowController.class
 module-info.class
 dk\sdu\sm4\CoreApplication.class
-dk\sdu\sm4\service\AssemblyStationServiceImpl$1.class
 dk\sdu\sm4\controller\AGVControllerMonitor.class
 dk\sdu\sm4\service\ProcessFlowService.class
 dk\sdu\sm4\config\ModuleConfig.class
 dk\sdu\sm4\model\ProcessFlowModel.class
-dk\sdu\sm4\service\AGVClientImpl.class

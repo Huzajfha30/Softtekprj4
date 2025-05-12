@@ -14,7 +14,7 @@ public class RegistryService {
 
     /**
       * Find a named service in a list
-      * @param list of services
+      * @param list of dk.sdu.sm4.common.agv.AGVClient
       * @param name to search for
       * @return service found (or null)
       */
@@ -98,7 +98,7 @@ public class RegistryService {
     }
 
     /**
-     * Return the current list of services as an array
+     * Return the current list of dk.sdu.sm4.common.agv.AGVClient as an array
      * @param Service Name
      * @return List of servers that implement that service
      */
@@ -111,7 +111,7 @@ public class RegistryService {
     }
 
     /*
-     * Return the current list of services as a string
+     * Return the current list of dk.sdu.sm4.common.agv.AGVClient as a string
      */
     public String LookupAsString(String stype) {
         Service[] services = Lookup(stype);

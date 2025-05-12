@@ -9,12 +9,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AGV" />
         <module name="Warehouse" />
+        <module name="AssemblyStationStandalone" />
+        <module name="AGVLogic" />
         <module name="CommonWarehouse" />
-        <module name="AssemblyStation" />
         <module name="CommonAGV" />
+        <module name="AGVStandalone" />
         <module name="CommonAssemblyStation" />
+        <module name="AssemblyStationLogic" />
         <module name="Common" />
         <module name="Core" />
       </profile>
@@ -27,9 +29,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AGV" options="-parameters" />
       <module name="AGV2" options="-parameters" />
-      <module name="AssemblyStation" options="-parameters" />
+      <module name="AGVStandalone" options="-parameters" />
+      <module name="AssemblyStationStandalone" options="-parameters" />
       <module name="Common" options="" />
       <module name="Core" options="" />
       <module name="Softtekprj4" options="" />

@@ -8,7 +8,9 @@ module Core {
     requires org.eclipse.paho.client.mqttv3;
 
     requires CommonAGV;
+    requires AGVLogic;
     requires CommonAssemblyStation;
+    requires AssemblyStationLogic;
     requires spring.beans;
     requires org.json;
 
@@ -20,4 +22,6 @@ module Core {
     opens dk.sdu.sm4.config to spring.beans, spring.core;
     exports dk.sdu.sm4.model;
     opens dk.sdu.sm4.model to spring.beans, spring.core;
+
+    uses dk.sdu.sm4.common.agv.AGVClient;
 }

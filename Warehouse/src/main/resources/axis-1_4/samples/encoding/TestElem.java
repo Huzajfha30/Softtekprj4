@@ -16,7 +16,7 @@ public class TestElem {
     public static String doit(String[] args,String xml) throws Exception {
         ByteArrayInputStream bais = new ByteArrayInputStream(xml.getBytes());
 
-        String  sURL = "http://" + args[0] + ":" + args[1] + "/axis/services/ElementService" ;
+        String  sURL = "http://" + args[0] + ":" + args[1] + "/axis/dk.sdu.sm4.common.agv.AGVClient/ElementService" ;
         QName   sqn  = new QName(sURL, "ElementService" );
         QName   pqn  = new QName(sURL, "ElementService" );
 

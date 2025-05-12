@@ -1,4 +1,4 @@
-<!-- Use this file to deploy some handlers/chains and services   -->
+<!-- Use this file to deploy some handlers/chains and dk.sdu.sm4.common.agv.AGVClient   -->
 <!-- on the client.  To do this simply run:                      -->
 <!--   java org.apache.axis.utils.Admin client client_deploy.xml -->
 <!--      from the same dir that the Axis client will run in     -->
