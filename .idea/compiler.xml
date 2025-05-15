@@ -22,8 +22,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AGV" target="17" />
       <module name="AGV2" target="17" />
       <module name="AssemblyMQTT" target="9" />
+      <module name="AssemblyStation" target="17" />
       <module name="common-agv" target="21" />
     </bytecodeTargetLevel>
   </component>

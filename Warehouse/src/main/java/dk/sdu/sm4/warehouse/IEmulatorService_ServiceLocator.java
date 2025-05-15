@@ -24,7 +24,7 @@ public class IEmulatorService_ServiceLocator extends org.apache.axis.client.Serv
     }
 
     // Use to get a proxy class for BasicHttpBinding_IEmulatorService
-    private java.lang.String BasicHttpBinding_IEmulatorService_address = "http://localhost:8086/Service.asmx";
+    private java.lang.String BasicHttpBinding_IEmulatorService_address = "http://localhost:8085/Service.asmx";
 
     public java.lang.String getBasicHttpBinding_IEmulatorServiceAddress() {
         return BasicHttpBinding_IEmulatorService_address;
