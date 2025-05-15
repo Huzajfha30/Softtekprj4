@@ -440,7 +440,10 @@ public class ProcessFlowService {
             return false;
         }
     }
-
+// updated
+    /**
+     * Check battery level before executing a step
+     */
     private void checkBatteryBeforeStep() throws Exception {
         AGVStatus status = agvClient.getStatus();
 
