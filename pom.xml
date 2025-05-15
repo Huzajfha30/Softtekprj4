@@ -89,6 +89,20 @@
       </activation>
       <build>
         <plugins>
+          <!-- module-info build fix -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+              <!-- run tests in-JVM so we see the real exception -->
+              <forkCount>0</forkCount>
+              <reuseForks>false</reuseForks>
+              <!-- put everything on the classpath -->
+              <useModulePath>false</useModulePath>
+              <!-- optional: show full debug in logs -->
+            </configuration>
+          </plugin>
           <plugin>
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.2.0</version>

@@ -1,15 +1,14 @@
-module Warehouse {
+open module Warehouse {
     requires com.fasterxml.jackson.databind;
-    requires spring.context;
     requires java.xml;
     requires java.rmi;
+    requires java.naming;
     requires CommonWarehouse;
-    requires axis;
-    requires jaxrpc.api;
-    requires spring.boot;
-    requires spring.boot.autoconfigure;
-    requires spring.web;
     requires jakarta.validation;
+    requires jaxrpc.api;
     requires io.swagger.v3.oas.annotations;
-    requires spring.webmvc;
+    requires axis;
+
+    exports dk.sdu.sm4.warehouse;
+    exports dk.sdu.sm4.warehouse.controller.dto;
 }

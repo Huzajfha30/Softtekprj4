@@ -2,22 +2,22 @@ package dk.sdu.sm4.warehouse.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Request payload for inserting an item into a tray")
+//@Schema(description = "Request payload for inserting an item into a tray")
 public class InsertItemRequest {
 
-    @Schema(description = "ID of the tray to insert into", example = "5", required = true)
+    //@Schema(description = "ID of the tray to insert into", example = "5", required = true)
     private int trayId;
 
-    @Schema(description = "Name of the item to insert", example = "Widget", required = true)
+    //@Schema(description = "Name of the item to insert", example = "Widget", required = true)
     private String name;
 
-    @Schema(description = "Board type (optional)", example = "1")
+    //@Schema(description = "Board type (optional)", example = "1")
     private String board;
 
-    @Schema(description = "Wheels type (optional)", example = "2")
+    //@Schema(description = "Wheels type (optional)", example = "2")
     private String wheels;
 
-    @Schema(description = "Trucks type (optional)", example = "1")
+    //@Schema(description = "Trucks type (optional)", example = "1")
     private String trucks;
 
     // Getters and setters

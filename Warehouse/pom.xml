@@ -82,12 +82,7 @@
 
 
 
-        <!-- Core-modul (interfaces, modeller, enums) -->
-        <dependency>
-            <groupId>dk.sdu.sm4</groupId>
-            <artifactId>Core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
 
         <!-- Common-modul (SOAP/MQTT helpers) -->
         <dependency>
@@ -131,10 +126,25 @@
 
     <build>
         <plugins>
-            <!-- Spring Boot Plugin -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <!-- put all code and libs on the plain classpath -->
+                    <useModulePath>false</useModulePath>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <!-- run tests on the classpath so module-info.java is ignored -->
+                    <useModulePath>false</useModulePath>
+                    <!-- run in-process so you see real stacktraces -->
+                    <forkCount>0</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
             </plugin>
 
             <!-- Copy .jar to mods-mvn folder -->

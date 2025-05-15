@@ -2,24 +2,14 @@ package dk.sdu.sm4.warehouse.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.sdu.cbse.IWarehouseService;
+import dk.sdu.cbse.common.warehouse.IWarehouseService;
 import dk.sdu.sm4.warehouse.IEmulatorService_PortType;
 import dk.sdu.sm4.warehouse.IEmulatorService_ServiceLocator;
-import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+//import org.springframework.stereotype.Service;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.rpc.ServiceException;
-import java.io.StringReader;
 import java.rmi.RemoteException;
-import java.util.HashSet;
-import java.util.Set;
 
-@Service
 public class WarehouseService implements IWarehouseService {
 
     private final IEmulatorService_ServiceLocator serviceLocator;

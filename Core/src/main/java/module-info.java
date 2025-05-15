@@ -13,6 +13,11 @@ module Core {
     requires AssemblyStationLogic;
     requires spring.beans;
     requires org.json;
+    requires CommonWarehouse;
+    requires Warehouse;
+    requires jakarta.validation;
+    requires axis;
+    requires jaxrpc.api;
 
     exports dk.sdu.sm4.service;
 

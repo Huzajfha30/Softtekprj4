@@ -1,3 +1,5 @@
 module CommonWarehouse {
-    exports dk.sdu.cbse;
+    requires transitive java.rmi;
+
+    exports dk.sdu.cbse.common.warehouse;
 }
