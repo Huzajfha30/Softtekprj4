@@ -1,5 +1,6 @@
 package dk.sdu.sm4.service;
 
+import dk.sdu.cbse.common.warehouse.IWarehouseService;
 import dk.sdu.sm4.common.agv.AGVClient;
 import dk.sdu.sm4.common.agv.AGVProgramRequest;
 import dk.sdu.sm4.common.agv.AGVStatus;
@@ -18,6 +19,7 @@ public class ProcessFlowService {
     // interfaces
     private final AGVClient agvClient;
     private final IAssemblyStationService assemblyStationService;
+    private final IWarehouseService warehouseService;
 
     private final ProcessFlowModel processFlow = new ProcessFlowModel();
 
@@ -30,25 +32,27 @@ public class ProcessFlowService {
     private static final int assemblyWaitTime = 60000; // venter max 60 sek
     private static final int assemblyProcessId = 12345;
 
+    private int selectedTrayId = -1; //indikere ingen selection
+    private String originalItemName;
+
     private Thread processThread;
 
-    public ProcessFlowService(AGVClient agvClient, IAssemblyStationService assemblyStationService) {
+    public ProcessFlowService(AGVClient agvClient, IAssemblyStationService assemblyStationService, IWarehouseService warehouseService) {
         this.agvClient = agvClient;
         this.assemblyStationService = assemblyStationService;
+        this.warehouseService = warehouseService;
     }
 
+    public void setSelectedTrayId(int trayId) {
+        this.selectedTrayId = trayId;
+    }
 
-    /**
-     * Get the current status of the process flow
-     */
 
     public ProcessFlowModel getProcessStatus() {
         return processFlow; // Return the model directly
     }
 
-    /**
-     * Cancel the currently running process flow
-     */
+
     public void cancelProcessFlow() {
         if (!isProcessRunning()) {
             return;
@@ -59,9 +63,7 @@ public class ProcessFlowService {
         processFlow.setCurrentStep("Cancelled");
     }
 
-    /**
-     * Start the process flow execution
-     */
+
     public void runProcessFlow() {
         initializeProcessState();
 
@@ -69,16 +71,14 @@ public class ProcessFlowService {
         processThread.start();
     }
 
-    /**
-     * Reset the process flow and AGV state
-     */
+
     public void resetProcessFlow() {
         stopRunningProcess();
         resetState();
         resetAGV();
     }
 
-    // PROCESS EXECUTION METHODS
+
 
     /**
      * Main background execution method
@@ -101,12 +101,8 @@ public class ProcessFlowService {
         assemblyStationService.startProcess(assemblyProcessId);
     }
 
-    /**
-     * Execute the individual steps of the process
-     */
-    /**
-     * Execute the complete process flow in sequential steps
-     */
+
+    //master method
     private void executeProcessSteps() throws Exception {
         // 1. Move to storage
         updateStep("Moving AGV to storage");
@@ -116,15 +112,37 @@ public class ProcessFlowService {
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(10);
 
-        // 2. Pick warehouse item
+        //2. PickItem "requester en item fra warehouse"
+        updateStep("Requesting item from warehouse");
+        checkBatteryBeforeStep();
+        if (selectedTrayId == -1) {
+            throw new RuntimeException("No warehouse tray selected. Please select a tray from the warehouse presets.");
+        }
+
+        // Store the item name safely
+        String itemName = "Item from tray " + selectedTrayId;
+        try {
+            String selectedItem = processFlow.getSelectedItem();
+            if (selectedItem != null && !selectedItem.isEmpty()) {
+                itemName = selectedItem;
+            }
+        } catch (Exception e) {
+            System.out.println("Could not get selected item name, using default: " + itemName);
+        }
+        originalItemName = itemName;
+
+        warehouseService.pickItem(selectedTrayId);
+        updateProgress(20);
+
+        // 3. Pick warehouse item
         updateStep("Picking item from warehouse");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PickWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
-        updateProgress(20);
+        updateProgress(25);
 
-        // 3. Move to assembly
+        // 4. Move to assembly
         updateStep("Moving to assembly station");
         checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToAssemblyOperation");
@@ -132,7 +150,7 @@ public class ProcessFlowService {
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(30);
 
-        // 4. Place at assembly
+        // 5. Place at assembly
         updateStep("Placing item at assembly station");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PutAssemblyOperation");
@@ -140,28 +158,28 @@ public class ProcessFlowService {
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(40);
 
-        // 5. Start assembly process
+        // 6. Start assembly process
         updateStep("Starting assembly process");
         checkBatteryBeforeStep();
         startAssemblyProcess();                 //ProcessId 12345
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(50);
 
-        // 6 Wait for assembly to start processing
+        // 7 Wait for assembly to start processing
         updateStep("Waiting for assembly to start");
         checkBatteryBeforeStep();
         waitForAssemblyState(assemblyProcessingState);
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(60);
 
-        // 7 Wait for assembly to complete
+        // 8 Wait for assembly to complete
         updateStep("Waiting for assembly to complete");
         checkBatteryBeforeStep();
         waitForAssemblyState(assemblyIdleState); //state 0 igen
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(70);
 
-        // 8 Pick assembled item
+        // 9 Pick assembled item
         updateStep("Picking assembled item");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PickAssemblyOperation");
@@ -169,7 +187,7 @@ public class ProcessFlowService {
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(80);
 
-        // 9 Return to warehouse
+        // 10 Return to warehouse
         updateStep("Moving to warehouse");
         checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToStorageOperation");
@@ -177,9 +195,15 @@ public class ProcessFlowService {
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(90);
 
-        // 10 Store completed item
-        updateStep("Placing item in warehouse");
+
+
+        //11. Return item to original tray with original name
+        updateStep("Placing assembled item back in tray " + selectedTrayId);
         checkBatteryBeforeStep();
+
+        warehouseService.insertItem(selectedTrayId, originalItemName);
+        System.out.println("✅ Warehouse: Item returned to original tray " + selectedTrayId + " with name: " + originalItemName);
+
         agvClient.loadProgram("PutWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -198,9 +222,7 @@ public class ProcessFlowService {
         processFlow.setProgress(0);
     }
 
-    /**
-     * Reset state to initial values
-     */
+
     private void resetState() {
         processFlow.setRunning(false);
         processFlow.setError(false);
@@ -209,41 +231,31 @@ public class ProcessFlowService {
         processFlow.setProgress(0);
     }
 
-    /**
-     * Update the current step description
-     */
+
     private void updateStep(String step) {
         processFlow.setCurrentStep(step);
         checkForInterruption();
     }
 
-    /**
-     * Update the progress percentage
-     */
+
     private void updateProgress(int newProgress) {
         processFlow.setProgress(Math.max(0, Math.min(100, newProgress)));
     }
 
-    /**
-     * Mark the process as complete
-     */
+
     private void completeProcess() {
         processFlow.setCurrentStep("Process completed");
         processFlow.setProgress(100);
     }
 
-    /**
-     * Handle process interruption
-     */
+
     private void handleInterruption() {
         processFlow.setCurrentStep("Process cancelled");
         processFlow.setProgress(0);
         Thread.currentThread().interrupt();
     }
 
-    /**
-     * Handle process errors
-     */
+
     private void handleProcessError(Exception e) {
         processFlow.setError(true);
         processFlow.setErrorMessage(e.getMessage());
@@ -295,9 +307,7 @@ public class ProcessFlowService {
         Thread.sleep(500);
     }
 
-    /**
-     * Wait for AGV to return to idle state
-     */
+
     private void waitForAGVToBeIdle(long timeoutMs) throws Exception {
         long startTime = System.currentTimeMillis();
 
@@ -315,9 +325,7 @@ public class ProcessFlowService {
         throw new RuntimeException("AGV did not return to idle state within timeout period");
     }
 
-    /**
-     * Wait for assembly to reach the target state
-     */
+
     private void waitForAssemblyState(int targetState) throws InterruptedException {
         long startTime = System.currentTimeMillis();
         long timeout = assemblyWaitTime;
@@ -336,18 +344,14 @@ public class ProcessFlowService {
         }
     }
 
-    /**
-     * Update progress based on elapsed time during assembly
-     */
+
     private void updateAssemblyProgress(long startTime, long timeout) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         int calculatedProgress = (int) Math.min(90, (elapsedTime * 100) / timeout);
         updateProgress(calculatedProgress);
     }
 
-    /**
-     * Reset the AGV to idle state
-     */
+
     private void resetAGV() {
         boolean resetSuccessful = false;
 
@@ -366,9 +370,7 @@ public class ProcessFlowService {
         }
     }
 
-    /**
-     * Check if AGV is already in idle state
-     */
+
     private boolean isAGVAlreadyIdle() {
         var status = agvClient.getStatus();
         System.out.println("Current AGV state before reset: " +
@@ -383,18 +385,14 @@ public class ProcessFlowService {
 
 
 
-    /**
-     * Abort any running AGV program
-     */
+
     private void abortAGVProgram(RestTemplate restTemplate, HttpHeaders headers) {
         AGVProgramRequest abortRequest = new AGVProgramRequest(null, 3);
         HttpEntity<AGVProgramRequest> abortEntity = new HttpEntity<>(abortRequest, headers);
         restTemplate.exchange(agvApiUrl, HttpMethod.PUT, abortEntity, AGVStatus.class);
     }
 
-    /**
-     * Load and execute return home operation
-     */
+
     private void loadAndExecuteReturnHome(RestTemplate restTemplate, HttpHeaders headers) throws InterruptedException {
         // Load return home program
         AGVProgramRequest loadRequest = new AGVProgramRequest("ReturnHomeOperation", 1);
@@ -408,9 +406,7 @@ public class ProcessFlowService {
         restTemplate.exchange(agvApiUrl, HttpMethod.PUT, execEntity, AGVStatus.class);
     }
 
-    /**
-     * Verify AGV was successfully reset
-     */
+
     private boolean verifyResetSuccess() {
         AGVStatus status = agvClient.getStatus();
         System.out.println("AGV state after reset attempt: " +
@@ -418,9 +414,7 @@ public class ProcessFlowService {
 
         return (status != null && status.getState() == agvIdleState);
     }
-    /**
-     * Attempt to force reset the AGV
-     */
+
     private boolean performAGVForceReset() {
         try {
             System.out.println("Attempting to force stop AGV program...");
@@ -441,9 +435,7 @@ public class ProcessFlowService {
         }
     }
 // updated
-    /**
-     * Check battery level before executing a step
-     */
+
     private void checkBatteryBeforeStep() throws Exception {
         AGVStatus status = agvClient.getStatus();
 
@@ -461,9 +453,5 @@ public class ProcessFlowService {
             System.out.println("🔌 Charging complete. Resuming process.");
         }
     }
-
-
-
-
 
 }

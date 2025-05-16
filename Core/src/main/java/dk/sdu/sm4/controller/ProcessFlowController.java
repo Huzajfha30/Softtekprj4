@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/processflow")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -20,8 +22,12 @@ public class ProcessFlowController {
 
 
     @PostMapping("/start")
-    public ResponseEntity<String> startProcess() {
+    public ResponseEntity<String> startProcess(@RequestBody Map<String, Integer> payload) {
         try {
+            Integer trayId = payload.get("trayId");
+            if (trayId != null) {
+                processFlowService.setSelectedTrayId(trayId);
+            }
             processFlowService.runProcessFlow();
             return ResponseEntity.ok("Process started successfully");
         } catch (Exception e) {

@@ -31,8 +31,10 @@ public class ModuleConfig {
     }
 
     @Bean
-    public List<IWarehouseService> warehouseServices() {
-        return ServiceLoader.load(IWarehouseService.class).stream().map(ServiceLoader.Provider::get).collect(Collectors.toList());
+    public IWarehouseService warehouseService() {
+        return ServiceLoader.load(IWarehouseService.class)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No warehouse service interface implementation found"));
     }
 
 

@@ -15,16 +15,16 @@ import java.util.ServiceLoader;
 
 @RestController
 @RequestMapping("/warehouse")
-@CrossOrigin(origins = "http://localhost:3000")  // Add this line
-public class WarehouseController {
+@CrossOrigin(origins = "http://localhost:3000")
+public class WarehouseControllerMonitor {
 
     private final IWarehouseService warehouseService;
     private final List<InsertItemRequest> presets = new ArrayList<>();
-    public WarehouseController(IWarehouseService warehouseService) {
+    public WarehouseControllerMonitor(IWarehouseService warehouseService) {
         this.warehouseService = warehouseService;
     }
 
-    public WarehouseController() {
+    public WarehouseControllerMonitor() {
         ServiceLoader<IWarehouseService> loader = ServiceLoader.load(IWarehouseService.class);
         this.warehouseService = loader.findFirst().orElseThrow(() -> new IllegalStateException("No warehouses found"));
     }
