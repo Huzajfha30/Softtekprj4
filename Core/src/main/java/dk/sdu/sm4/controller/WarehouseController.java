@@ -15,6 +15,7 @@ import java.util.ServiceLoader;
 
 @RestController
 @RequestMapping("/warehouse")
+@CrossOrigin(origins = "http://localhost:3000")  // Add this line
 public class WarehouseController {
 
     private final IWarehouseService warehouseService;
