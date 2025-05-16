@@ -110,6 +110,7 @@ public class ProcessFlowService {
     private void executeProcessSteps() throws Exception {
         // 1. Move to storage
         updateStep("Moving AGV to storage");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToStorageOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -117,6 +118,7 @@ public class ProcessFlowService {
 
         // 2. Pick warehouse item
         updateStep("Picking item from warehouse");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("PickWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -124,6 +126,7 @@ public class ProcessFlowService {
 
         // 3. Move to assembly
         updateStep("Moving to assembly station");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToAssemblyOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -131,6 +134,7 @@ public class ProcessFlowService {
 
         // 4. Place at assembly
         updateStep("Placing item at assembly station");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("PutAssemblyOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -138,24 +142,28 @@ public class ProcessFlowService {
 
         // 5. Start assembly process
         updateStep("Starting assembly process");
+        checkBatteryBeforeStep();
         startAssemblyProcess();                 //ProcessId 12345
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(50);
 
         // 6 Wait for assembly to start processing
         updateStep("Waiting for assembly to start");
+        checkBatteryBeforeStep();
         waitForAssemblyState(assemblyProcessingState);
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(60);
 
         // 7 Wait for assembly to complete
         updateStep("Waiting for assembly to complete");
+        checkBatteryBeforeStep();
         waitForAssemblyState(assemblyIdleState); //state 0 igen
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(70);
 
         // 8 Pick assembled item
         updateStep("Picking assembled item");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("PickAssemblyOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -163,6 +171,7 @@ public class ProcessFlowService {
 
         // 9 Return to warehouse
         updateStep("Moving to warehouse");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToStorageOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -170,6 +179,7 @@ public class ProcessFlowService {
 
         // 10 Store completed item
         updateStep("Placing item in warehouse");
+        checkBatteryBeforeStep();
         agvClient.loadProgram("PutWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
@@ -430,5 +440,30 @@ public class ProcessFlowService {
             return false;
         }
     }
+// updated
+    /**
+     * Check battery level before executing a step
+     */
+    private void checkBatteryBeforeStep() throws Exception {
+        AGVStatus status = agvClient.getStatus();
+
+        if (status.getBattery() <= 10) {
+            System.out.println("🔋 Battery low (" + status.getBattery() + "%). Sending AGV to charger...");
+            processFlow.setCurrentStep("AGV battery low – charging...");
+
+            agvClient.loadProgram("MoveToChargerOperation");
+            agvClient.executeProgram();
+
+            while (agvClient.getStatus().getBattery() <= 30) {
+                Thread.sleep(5000);
+            }
+
+            System.out.println("🔌 Charging complete. Resuming process.");
+        }
+    }
+
+
+
+
 
 }
