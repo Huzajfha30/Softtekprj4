@@ -12,4 +12,6 @@ public interface IWarehouseService {
     boolean stopProcess();
     boolean restartProcess();
     void setStockThreshold(int trayId, int threshold);
+
+    String getTrayContent(int trayId) throws RemoteException;
 }

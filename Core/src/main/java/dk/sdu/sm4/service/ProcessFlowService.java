@@ -118,18 +118,8 @@ public class ProcessFlowService {
         if (selectedTrayId == -1) {
             throw new RuntimeException("No warehouse tray selected. Please select a tray from the warehouse presets.");
         }
-
-        // Store the item name safely
-        String itemName = "Item from tray " + selectedTrayId;
-        try {
-            String selectedItem = processFlow.getSelectedItem();
-            if (selectedItem != null && !selectedItem.isEmpty()) {
-                itemName = selectedItem;
-            }
-        } catch (Exception e) {
-            System.out.println("Could not get selected item name, using default: " + itemName);
-        }
-        originalItemName = itemName;
+        originalItemName = warehouseService.getTrayContent(selectedTrayId);
+        System.out.println("✅ Item name from tray " + selectedTrayId + ": " + originalItemName);
 
         warehouseService.pickItem(selectedTrayId);
         updateProgress(20);

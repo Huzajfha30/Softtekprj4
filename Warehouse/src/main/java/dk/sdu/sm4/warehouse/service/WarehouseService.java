@@ -104,4 +104,28 @@ public class WarehouseService implements IWarehouseService {
     public void setStockThreshold(int trayId, int threshold) {
 
     }
+    @Override
+    public String getTrayContent(int trayId) throws RemoteException {
+        try {
+            String inventoryJson = getInventory();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(inventoryJson);
+            JsonNode inventory = root.get("Inventory");
+
+            for (JsonNode tray : inventory) {
+                int id = tray.get("Id").asInt();
+                if (id == trayId) {
+                    // Found the matching tray, return its content (item name)
+                    String content = tray.get("Content").asText();
+                    return content != null && !content.isEmpty() ? content : "Item from tray " + trayId;
+                }
+            }
+
+            // If tray not found, return default name
+            return "Item from tray " + trayId;
+        } catch (Exception e) {
+            System.out.println("Error getting tray content: " + e.getMessage());
+            return "Item from tray " + trayId;
+        }
+    }
 }
