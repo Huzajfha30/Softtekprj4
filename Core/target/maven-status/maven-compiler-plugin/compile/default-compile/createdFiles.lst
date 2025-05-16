@@ -1,3 +1,5 @@
+dk\sdu\sm4\config\EmulatorClientConfig.class
+dk\sdu\sm4\controller\WarehouseController.class
 dk\sdu\sm4\controller\AssemblyStationControllerMonitor.class
 dk\sdu\sm4\controller\ProcessFlowController.class
 module-info.class
