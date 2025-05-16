@@ -1,5 +1,7 @@
 package dk.sdu.sm4.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.sdu.cbse.common.warehouse.IWarehouseService;
 import dk.sdu.sm4.warehouse.controller.dto.InsertItemRequest;
 import dk.sdu.sm4.warehouse.controller.dto.PickOrderRequest;
@@ -8,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ServiceLoader;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @RequestMapping("/warehouse")
@@ -30,16 +30,44 @@ public class WarehouseControllerMonitor {
     }
 
     @GetMapping("/inventory")
-    public ResponseEntity<String> getInventory() {
+    public ResponseEntity<Map<String, Object>> getEnhancedInventory() {
         try {
-            String xml = warehouseService.getInventory();
-            return ResponseEntity.ok(xml);
-        } catch (RemoteException e) {
+            String xml = warehouseService.getInventory(); // ← XML fra emulator
+            List<Map<String, Object>> inventory = new ArrayList<>();
+
+            // Parse XML til JSON-struktur (bruger Jackson her for simplicitet)
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(xml);
+            JsonNode trays = root.get("Inventory");
+
+            for (JsonNode tray : trays) {
+                int id = tray.get("Id").asInt();
+                String content = tray.get("Content").asText("");
+
+                // Find om den er final product
+                boolean isFinal = presets.stream()
+                        .anyMatch(p -> p.getTrayId() == id && Boolean.TRUE.equals(p.isFinalProduct()));
+
+                Map<String, Object> trayData = new HashMap<>();
+                trayData.put("Id", id);
+                trayData.put("Content", content);
+                trayData.put("IsFinalProduct", isFinal);
+                inventory.add(trayData);
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("Inventory", inventory);
+            response.put("DateTime", LocalDateTime.now());
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_GATEWAY)
-                    .body("Error fetching inventory: " + e.getMessage());
+                    .body(Map.of("error", "Error parsing inventory: " + e.getMessage()));
         }
     }
+
 
     @PostMapping("/pickItem")
     public ResponseEntity<String> pickItem(@RequestBody Map<String, Integer> request) {
@@ -77,7 +105,8 @@ public class WarehouseControllerMonitor {
 
             warehouseService.insertItem(trayId, req.getName());
 
-            // 💾 Gem også som preset i RAM
+            req.setTrayId(trayId);
+            req.setIsFinalProduct(false); // 💡 Opret som ikke-færdigt produkt
             presets.add(req);
 
             return ResponseEntity.ok("Inserted '" + req.getName() + "' into tray " + trayId);
@@ -87,6 +116,31 @@ public class WarehouseControllerMonitor {
                     .body("Error inserting item: " + e.getMessage());
         }
     }
+
+    @PostMapping("/resetFinalProducts")
+    public ResponseEntity<String> resetFinalProducts() {
+        presets.clear(); // sletter alle gemte presets i RAM
+        return ResponseEntity.ok("All final product flags have been reset");
+    }
+
+    @PostMapping("/insertFinalProduct")
+    public ResponseEntity<String> insertFinalProduct(@RequestBody InsertItemRequest req) {
+        try {
+            int trayId = req.getTrayId();
+            warehouseService.insertItem(trayId, req.getName());
+
+            req.setIsFinalProduct(true); // ✅ Dette ER et færdigt produkt
+            presets.add(req);
+
+            return ResponseEntity.ok("Final product inserted in tray " + trayId);
+        } catch (RemoteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                    .body("Error inserting final product: " + e.getMessage());
+        }
+    }
+
+
+
 
     @GetMapping("/getPresets")
     public ResponseEntity<List<InsertItemRequest>> getPresets() {

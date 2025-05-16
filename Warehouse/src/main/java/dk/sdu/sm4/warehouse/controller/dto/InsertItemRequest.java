@@ -20,6 +20,15 @@ public class InsertItemRequest {
     //@Schema(description = "Trucks type (optional)", example = "1")
     private String trucks;
 
+    private boolean isFinalProduct;
+
+    public boolean isFinalProduct() {
+        return isFinalProduct;
+    }
+    public void setIsFinalProduct(boolean isFinalProduct) {
+        this.isFinalProduct = isFinalProduct;
+    }
+
     // Getters and setters
     public int getTrayId() {
         return trayId;

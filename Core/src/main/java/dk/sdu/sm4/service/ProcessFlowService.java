@@ -6,6 +6,7 @@ import dk.sdu.sm4.common.agv.AGVProgramRequest;
 import dk.sdu.sm4.common.agv.AGVStatus;
 import dk.sdu.sm4.commonassemblystation.IAssemblyStationService;
 import dk.sdu.sm4.model.ProcessFlowModel;
+import dk.sdu.sm4.warehouse.controller.dto.InsertItemRequest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -118,6 +119,7 @@ public class ProcessFlowService {
         }
         originalItemName = warehouseService.getTrayContent(selectedTrayId);
         warehouseService.pickItem(selectedTrayId);
+
         updateProgress(20);
 
         // 3. Pick warehouse item
@@ -185,11 +187,29 @@ public class ProcessFlowService {
 
         updateStep("Placing assembled item back in tray " + selectedTrayId);
         checkBatteryBeforeStep();
-        warehouseService.insertItem(selectedTrayId, originalItemName);
+
+// ✅ Lav en InsertItemRequest med isFinalProduct = true
+        InsertItemRequest req = new InsertItemRequest();
+        req.setTrayId(selectedTrayId);
+        req.setName(originalItemName);
+// Vi bruger den nye endpoint til final products
+
+        RestTemplate rest = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<InsertItemRequest> entity = new HttpEntity<>(req, headers);
+
+// 🔥 Kald nu den DEDIKEREDE FINAL endpoint
+        rest.postForEntity("http://localhost:8080/warehouse/insertFinalProduct", entity, String.class);
+
+
+// 🚚 AGV placerer varen
         agvClient.loadProgram("PutWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);
+
         updateProgress(100);
+
     }
 
 
@@ -228,6 +248,11 @@ public class ProcessFlowService {
     private void completeProcess() {
         processFlow.setCurrentStep("Process completed");
         processFlow.setProgress(100);
+        processFlow.setRunning(false); // ⬅️ Dette er vigtigt!
+
+        // Nulstil midlertidige variabler
+        selectedTrayId = -1;
+        originalItemName = null;
     }
 
 
