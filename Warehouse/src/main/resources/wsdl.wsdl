@@ -152,7 +152,7 @@
     </wsdl:binding>
     <wsdl:service name="IEmulatorService">
         <wsdl:port name="BasicHttpBinding_IEmulatorService" binding="tns:BasicHttpBinding_IEmulatorService">
-            <soap:address location="http://localhost:8081/Service.asmx"/>
+            <soap:address location="http://localhost:8085/Service.asmx"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

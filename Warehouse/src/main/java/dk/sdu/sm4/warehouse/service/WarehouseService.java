@@ -12,16 +12,26 @@ import java.rmi.RemoteException;
 
 public class WarehouseService implements IWarehouseService {
 
-    private final IEmulatorService_ServiceLocator serviceLocator;
+    private  IEmulatorService_ServiceLocator serviceLocator;
 
-    private final IEmulatorService_PortType port;
+    private  IEmulatorService_PortType port;
 
     private volatile boolean stopRequested = false;
+
     public WarehouseService(IEmulatorService_ServiceLocator serviceLocator, IEmulatorService_PortType port) throws ServiceException {
         this.serviceLocator = serviceLocator;
         this.port = port;
     }
 
+    public WarehouseService() {
+        try {
+            this.serviceLocator = new IEmulatorService_ServiceLocator();
+            this.port = serviceLocator.getBasicHttpBinding_IEmulatorService();
+        } catch (ServiceException e) {
+            throw new RuntimeException("Failed to initialize warehouse service", e);
+        }
+
+    }
 
     private int parseTrayIdWithSpace(String json) {
         try {
