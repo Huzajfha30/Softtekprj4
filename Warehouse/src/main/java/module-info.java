@@ -11,4 +11,5 @@ open module Warehouse {
 
     exports dk.sdu.sm4.warehouse;
     exports dk.sdu.sm4.warehouse.controller.dto;
+    exports dk.sdu.sm4.warehouse.service;
 }

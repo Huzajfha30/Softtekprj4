@@ -29,4 +29,7 @@ module Core {
     opens dk.sdu.sm4.model to spring.beans, spring.core;
 
     uses dk.sdu.sm4.common.agv.AGVClient;
+    uses dk.sdu.sm4.commonassemblystation.IAssemblyStationService;
+    uses dk.sdu.cbse.common.warehouse.IWarehouseService;
+
 }

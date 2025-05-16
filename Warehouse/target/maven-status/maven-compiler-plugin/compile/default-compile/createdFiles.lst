@@ -1,12 +1,8 @@
 dk\sdu\sm4\warehouse\IEmulatorService_PortType.class
-dk\sdu\sm4\warehouse\config\WebConfig.class
 dk\sdu\sm4\warehouse\IEmulatorService_ServiceLocator.class
-dk\sdu\sm4\warehouse\config\EmulatorClientConfig.class
+module-info.class
 dk\sdu\sm4\warehouse\controller\dto\PickOrderRequest.class
-dk\sdu\sm4\warehouse\WarehouseApplication.class
 dk\sdu\sm4\warehouse\IEmulatorService_Service.class
 dk\sdu\sm4\warehouse\BasicHttpBinding_IEmulatorServiceStub.class
 dk\sdu\sm4\warehouse\service\WarehouseService.class
-dk\sdu\sm4\warehouse\controller\WarehouseController.class
 dk\sdu\sm4\warehouse\controller\dto\InsertItemRequest.class
-dk\sdu\sm4\warehouse\config\WebConfig$1.class
