@@ -101,23 +101,15 @@ public class ProcessFlowService {
 
     //master method
     private void executeProcessSteps() throws Exception {
-        // Log process start
-        System.out.println("PROCESS START: Processing item from tray " + selectedTrayId);
-
         // 1. Move to storage
-        System.out.println("STEP 1: Moving AGV to storage");
         updateStep("Moving AGV to storage");
         checkBatteryBeforeStep();
-        System.out.println("   Loading MoveToStorageOperation program");
         agvClient.loadProgram("MoveToStorageOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to complete move to storage");
         waitForAGVToBeIdle(agvWaitTime);
         updateProgress(10);
-        System.out.println("STEP 1: Complete - AGV at storage location");
 
         //2. PickItem "requester en item fra warehouse"
-        System.out.println(" STEP 2: Requesting item from warehouse");
         updateStep("Requesting item from warehouse");
         checkBatteryBeforeStep();
         if (selectedTrayId == -1) {
@@ -125,110 +117,79 @@ public class ProcessFlowService {
             throw new RuntimeException("No warehouse tray selected. Please select a tray from the warehouse presets.");
         }
         originalItemName = warehouseService.getTrayContent(selectedTrayId);
-        System.out.println("   Retrieved item name: '" + originalItemName + "' from tray " + selectedTrayId);
         warehouseService.pickItem(selectedTrayId);
-        System.out.println("STEP 2: Complete - Item request sent to warehouse");
         updateProgress(20);
 
         // 3. Pick warehouse item
-        System.out.println("STEP 3: AGV picking item from warehouse");
         updateStep("Picking item from warehouse");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PickWarehouseOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to pick item");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 3: Complete - Item picked from warehouse");
         updateProgress(25);
 
         // 4. Move to assembly
-        System.out.println("STEP 4: Moving AGV to assembly station");
         updateStep("Moving to assembly station");
         checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToAssemblyOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to arrive at assembly station");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 4: Complete - AGV at assembly station");
         updateProgress(30);
 
         // 5. Place at assembly
-        System.out.println("STEP 5: AGV placing item at assembly station");
         updateStep("Placing item at assembly station");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PutAssemblyOperation");
         agvClient.executeProgram();
-        System.out.println("Waiting for AGV to place item");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 5: Complete - Item placed at assembly station");
         updateProgress(40);
 
         // 6. Start assembly process
-        System.out.println("STEP 6: Starting assembly process");
         updateStep("Starting assembly process");
         checkBatteryBeforeStep();
-        System.out.println("   Sending start command to assembly station with processId: " + assemblyProcessId);
         startAssemblyProcess();                 //ProcessId 12345
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 6: Complete - Assembly process started");
         updateProgress(50);
 
         // 7 Wait for assembly to start processing
-        System.out.println("STEP 7: Waiting for assembly to start processing");
         updateStep("Waiting for assembly to start");
         checkBatteryBeforeStep();
-        System.out.println("   Waiting for assembly state to change to PROCESSING (" + assemblyProcessingState + ")");
         waitForAssemblyState(assemblyProcessingState);
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println(" STEP 7: Complete - Assembly is now processing");
         updateProgress(60);
 
         // 8 Wait for assembly to complete
-        System.out.println("STEP 8: Waiting for assembly to complete");
         updateStep("Waiting for assembly to complete");
         checkBatteryBeforeStep();
-        System.out.println("   Waiting for assembly state to return to IDLE (" + assemblyIdleState + ")");
         waitForAssemblyState(assemblyIdleState); //state 0 igen
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 8: Complete - Assembly finished");
         updateProgress(70);
 
         // 9 Pick assembled item
-        System.out.println("STEP 9: AGV picking assembled item");
         updateStep("Picking assembled item");
         checkBatteryBeforeStep();
         agvClient.loadProgram("PickAssemblyOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to pick assembled item");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 9: Complete - Assembled item picked by AGV");
         updateProgress(80);
 
         // 10 Return to warehouse
-        System.out.println("STEP 10: AGV returning to warehouse");
         updateStep("Moving to warehouse");
         checkBatteryBeforeStep();
         agvClient.loadProgram("MoveToStorageOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to return to warehouse");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 10: Complete - AGV back at warehouse");
         updateProgress(90);
 
         //11. Return item to original tray with original name
-        System.out.println("STEP 11: Returning assembled item to tray " + selectedTrayId);
+
         updateStep("Placing assembled item back in tray " + selectedTrayId);
         checkBatteryBeforeStep();
-        System.out.println("   Inserting item '" + originalItemName + "' back into tray " + selectedTrayId);
         warehouseService.insertItem(selectedTrayId, originalItemName);
         agvClient.loadProgram("PutWarehouseOperation");
         agvClient.executeProgram();
-        System.out.println("   Waiting for AGV to place item in warehouse");
         waitForAGVToBeIdle(agvWaitTime);
-        System.out.println("STEP 11: Complete - Item returned to warehouse");
         updateProgress(100);
-
-        System.out.println("PROCESS COMPLETE: Successfully processed item from tray " + selectedTrayId);
     }
 
 
