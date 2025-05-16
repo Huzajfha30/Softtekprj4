@@ -119,8 +119,6 @@ public class ProcessFlowService {
             throw new RuntimeException("No warehouse tray selected. Please select a tray from the warehouse presets.");
         }
         originalItemName = warehouseService.getTrayContent(selectedTrayId);
-        System.out.println("✅ Item name from tray " + selectedTrayId + ": " + originalItemName);
-
         warehouseService.pickItem(selectedTrayId);
         updateProgress(20);
 
