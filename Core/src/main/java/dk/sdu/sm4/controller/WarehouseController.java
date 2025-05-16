@@ -42,16 +42,24 @@ public class WarehouseController {
     }
 
     @PostMapping("/pickItem")
-    public ResponseEntity<String> pickItem(@RequestParam int trayId) {
+    public ResponseEntity<String> pickItem(@RequestBody Map<String, Integer> request) {
+        Integer trayId = request.get("trayId");
+
+        if (trayId == null) {
+            return ResponseEntity.badRequest().body("trayId is required");
+        }
+
         try {
             warehouseService.pickItem(trayId);
-            return ResponseEntity.ok("Picked one item from tray " + trayId);
-        } catch (RemoteException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_GATEWAY)
+            return ResponseEntity.ok("Picked item from tray " + trayId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error picking item: " + e.getMessage());
         }
     }
+
+
+
 
     @PostMapping("/insertItem")
     public ResponseEntity<String> insertItem(@Valid @RequestBody InsertItemRequest req) {
