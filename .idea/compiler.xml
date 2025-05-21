@@ -20,8 +20,10 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AGV2" target="17" />
+      <module name="AGVLogic" target="21" />
       <module name="AGVStandalone" target="17" />
       <module name="AssemblyMQTT" target="9" />
+      <module name="AssemblyStationLogic" target="21" />
       <module name="AssemblyStationStandalone" target="17" />
       <module name="Common" target="21" />
       <module name="common-agv" target="21" />

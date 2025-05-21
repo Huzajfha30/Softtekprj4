@@ -60,12 +60,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>dk.sdu.sm4.agvlogic</groupId>
+            <groupId>dk.sdu.sm4.agv</groupId>
             <artifactId>AGV</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>dk.sdu.sm4.assemblystationlogic</groupId>
+            <groupId>dk.sdu.sm4.assemblystation</groupId>
             <artifactId>AssemblyStation</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -99,7 +99,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.0</version> <!-- Add this line with your Spring Boot version -->
+                <version>3.2.0</version>
             </plugin>
         </plugins>
     </build>
