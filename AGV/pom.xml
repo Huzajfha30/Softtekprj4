@@ -29,8 +29,8 @@
             <groupId>dk.sdu.sm4</groupId>
             <artifactId>CommonAGV</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
