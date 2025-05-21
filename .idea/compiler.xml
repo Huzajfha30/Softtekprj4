@@ -9,23 +9,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="AGV" />
         <module name="Warehouse" />
-        <module name="AssemblyStationStandalone" />
-        <module name="AGVLogic" />
         <module name="CommonWarehouse" />
+        <module name="AssemblyStation" />
         <module name="CommonAGV" />
-        <module name="AGVStandalone" />
         <module name="CommonAssemblyStation" />
-        <module name="AssemblyStationLogic" />
-        <module name="Common" />
         <module name="Core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AGV" target="17" />
       <module name="AGV2" target="17" />
+      <module name="AGVStandalone" target="17" />
       <module name="AssemblyMQTT" target="9" />
-      <module name="AssemblyStation" target="17" />
+      <module name="AssemblyStationStandalone" target="17" />
+      <module name="Common" target="21" />
       <module name="common-agv" target="21" />
     </bytecodeTargetLevel>
   </component>

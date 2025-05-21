@@ -188,22 +188,23 @@ public class ProcessFlowService {
         updateStep("Placing assembled item back in tray " + selectedTrayId);
         checkBatteryBeforeStep();
 
-// ✅ Lav en InsertItemRequest med isFinalProduct = true
+
         InsertItemRequest req = new InsertItemRequest();
         req.setTrayId(selectedTrayId);
         req.setName(originalItemName);
-// Vi bruger den nye endpoint til final products
+
+
 
         RestTemplate rest = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<InsertItemRequest> entity = new HttpEntity<>(req, headers);
 
-// 🔥 Kald nu den DEDIKEREDE FINAL endpoint
+
         rest.postForEntity("http://localhost:8080/warehouse/insertFinalProduct", entity, String.class);
 
 
-// 🚚 AGV placerer varen
+
         agvClient.loadProgram("PutWarehouseOperation");
         agvClient.executeProgram();
         waitForAGVToBeIdle(agvWaitTime);

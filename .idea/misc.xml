@@ -10,7 +10,10 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/AGV2/pom.xml" />
+        <option value="$PROJECT_DIR$/AGVStandalone/pom.xml" />
         <option value="$PROJECT_DIR$/AssemblyMQTT/pom.xml" />
+        <option value="$PROJECT_DIR$/AssemblyStationStandalone/pom.xml" />
+        <option value="$PROJECT_DIR$/Common/pom.xml" />
       </set>
     </option>
   </component>

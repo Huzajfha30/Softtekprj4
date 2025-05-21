@@ -125,15 +125,11 @@
   <modules>
     <module>Core</module>
     <module>CommonAGV</module>
-    <module>AGVStandalone</module>
-
-    <module>AssemblyStationStandalone</module>
     <module>Warehouse</module>
-    <module>Common</module>
-      <module>CommonAssemblyStation</module>
-      <module>CommonWarehouse</module>
-    <module>AGVLogic</module>
-    <module>AssemblyStationLogic</module>
+    <module>CommonAssemblyStation</module>
+    <module>CommonWarehouse</module>
+    <module>AGV</module>
+    <module>AssemblyStation</module>
   </modules>
 
 </project>

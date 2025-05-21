@@ -55,13 +55,5 @@ public class ProcessFlowController {
         }
     }
 
-    @PostMapping("/reset")
-    public ResponseEntity<String> resetProcess() {
-        try {
-            processFlowService.resetProcessFlow();
-            return ResponseEntity.ok("Process reset successfully");
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Error resetting process: " + e.getMessage());
-        }
-    }
+
 }

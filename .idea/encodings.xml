@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/AGV/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AGV/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AGV2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AGV2/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/AGVLogic/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/AGVLogic/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AGVStandalone/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AGVStandalone/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AssemblyMQTT/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AssemblyMQTT/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/AssemblyStationLogic/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/AssemblyStationLogic/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AssemblyStation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AssemblyStation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AssemblyStationStandalone/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AssemblyStationStandalone/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Common/src/main/java" charset="UTF-8" />
