@@ -23,8 +23,6 @@ public class ProcessFlowService {
     private final IWarehouseService warehouseService;
 
     private final ProcessFlowModel processFlow = new ProcessFlowModel();
-
-    private static final String agvApiUrl = "http://localhost:8082/v1/status";
     private static final int agvIdleState = 1;
     private static final int agvWaitTime = 30000; //venter max 30 sekunder mellem hvert step
 
@@ -395,23 +393,16 @@ public class ProcessFlowService {
 
 
     private void abortAGVProgram(RestTemplate restTemplate, HttpHeaders headers) {
-        AGVProgramRequest abortRequest = new AGVProgramRequest(null, 3);
-        HttpEntity<AGVProgramRequest> abortEntity = new HttpEntity<>(abortRequest, headers);
-        restTemplate.exchange(agvApiUrl, HttpMethod.PUT, abortEntity, AGVStatus.class);
+
+        agvClient.resetAGV();
     }
 
 
     private void loadAndExecuteReturnHome(RestTemplate restTemplate, HttpHeaders headers) throws InterruptedException {
-        // Load return home program
-        AGVProgramRequest loadRequest = new AGVProgramRequest("ReturnHomeOperation", 1);
-        HttpEntity<AGVProgramRequest> loadEntity = new HttpEntity<>(loadRequest, headers);
-        restTemplate.exchange(agvApiUrl, HttpMethod.PUT, loadEntity, AGVStatus.class);
-        Thread.sleep(1000);
 
-        // Execute program
-        AGVProgramRequest execRequest = new AGVProgramRequest(null, 2);
-        HttpEntity<AGVProgramRequest> execEntity = new HttpEntity<>(execRequest, headers);
-        restTemplate.exchange(agvApiUrl, HttpMethod.PUT, execEntity, AGVStatus.class);
+        agvClient.loadProgram("ReturnHomeOperation");
+        Thread.sleep(1000);
+        agvClient.executeProgram();
     }
 
 
@@ -426,14 +417,14 @@ public class ProcessFlowService {
     private boolean performAGVForceReset() {
         try {
             System.out.println("Attempting to force stop AGV program...");
-            RestTemplate restTemplate = new RestTemplate();
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
 
-            abortAGVProgram(restTemplate, headers);
+
+            agvClient.resetAGV();
             Thread.sleep(2000);
 
-            loadAndExecuteReturnHome(restTemplate, headers);
+
+            agvClient.loadProgram("ReturnHomeOperation");
+            agvClient.executeProgram();
             Thread.sleep(2000);
 
             return verifyResetSuccess();

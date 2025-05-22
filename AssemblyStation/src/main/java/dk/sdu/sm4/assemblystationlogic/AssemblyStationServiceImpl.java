@@ -57,6 +57,7 @@ public class AssemblyStationServiceImpl implements IAssemblyStationService {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) {
+
                 handleIncomingMessage(topic, message);
             }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dk.sdu.sm4.commonassemblystation.AppTest" time="0.044" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dk.sdu.sm4.commonassemblystation.AppTest" time="0.02" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\Nicol\.jdks\openjdk-21.0.2\bin"/>
-    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\Nicol\AppData\Local\Temp\surefire16034658219056069582 2025-05-21T18-03-01_622-jvmRun1 surefire-20250521180317600_4tmp surefire_1-20250521180317600_5tmp"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\Nicol\AppData\Local\Temp\surefire4583802114506540023 2025-05-22T10-41-44_028-jvmRun1 surefire-20250522104147875_4tmp surefire_1-20250522104147875_5tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Nicol\Desktop\sof\4sem\4semesterProjekt\Softtekprj4BackEnd\CommonAssemblyStation\target\test-classes;C:\Users\Nicol\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -61,5 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testApp" classname="dk.sdu.sm4.commonassemblystation.AppTest" time="0.006"/>
+  <testcase name="testApp" classname="dk.sdu.sm4.commonassemblystation.AppTest" time="0.002"/>
 </testsuite>
