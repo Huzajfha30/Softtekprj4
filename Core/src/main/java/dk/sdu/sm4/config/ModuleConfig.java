@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 
 @Configuration
-public class ModuleConfig {
+public class ModuleConfig { // black magic - reflection, introspection
 
 
     @Bean
@@ -36,6 +36,5 @@ public class ModuleConfig {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("No warehouse service interface implementation found"));
     }
-
 
 }
